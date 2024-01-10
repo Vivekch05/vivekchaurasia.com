@@ -1,6 +1,7 @@
 {
   "name": "vivek-portfolio",
   "version": "0.1.0",
+  "homepage": "https://Vivekch05.github.io/vivekchaurasia.com/",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
@@ -47,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
