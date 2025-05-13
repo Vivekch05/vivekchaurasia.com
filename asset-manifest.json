@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/vivekchaurasia.com/static/css/main.bf538fe7.css",
-    "main.js": "/vivekchaurasia.com/static/js/main.616bb74a.js",
-    "static/media/VivekImage.jpg": "/vivekchaurasia.com/static/media/VivekImage.9ce654a1e45830f8c9ac.jpg",
+    "main.js": "/vivekchaurasia.com/static/js/main.f2e41dc4.js",
+    "static/media/VivekImage.jpg": "/vivekchaurasia.com/static/media/VivekImage.974fa25020667cb222ca.jpg",
     "index.html": "/vivekchaurasia.com/index.html",
     "main.bf538fe7.css.map": "/vivekchaurasia.com/static/css/main.bf538fe7.css.map",
-    "main.616bb74a.js.map": "/vivekchaurasia.com/static/js/main.616bb74a.js.map"
+    "main.f2e41dc4.js.map": "/vivekchaurasia.com/static/js/main.f2e41dc4.js.map"
   },
   "entrypoints": [
     "static/css/main.bf538fe7.css",
-    "static/js/main.616bb74a.js"
+    "static/js/main.f2e41dc4.js"
   ]
 }
