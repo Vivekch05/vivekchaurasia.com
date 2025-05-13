@@ -1,14 +1,24 @@
-
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import { education, experiences } from '../../data/constants';
+import { education } from '../../data/constants';
 import EducationCard from '../Cards/EducationCard';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const Container = styled.div`
     display: flex;
@@ -17,7 +27,9 @@ const Container = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
-    padding: 0px 0px 60px 0px;
+    padding: 40px 0px 80px 0px;
+    background: linear-gradient(180deg, ${({ theme }) => theme.card_light} 0%, ${({ theme }) => theme.card_light}99 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     @media (max-width: 960px) {
         padding: 0px;
     }
@@ -31,7 +43,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 1350px;
-    padding: 40px 0px 0px 0px;
+    padding: 80px 0;
     gap: 12px;
     @media (max-width: 960px) {
         flex-direction: column;
@@ -39,15 +51,20 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-font-size: 42px;
-text-align: center;
-font-weight: 600;
-margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
-      margin-top: 12px;
-      font-size: 32px;
-  }
+    font-size: 42px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
+    color: ${({ theme }) => theme.text_primary};
+    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${fadeIn} 0.8s ease-out;
+    
+    @media (max-width: 768px) {
+        margin-top: 12px;
+        font-size: 32px;
+    }
 `;
 
 const Desc = styled.div`
@@ -55,6 +72,9 @@ const Desc = styled.div`
     text-align: center;
     max-width: 600px;
     color: ${({ theme }) => theme.text_secondary};
+    margin-bottom: 20px;
+    animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
+    
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
@@ -70,12 +90,32 @@ const TimelineSection = styled.div`
     align-items: center;
     justify-content: center;
     gap: 12px;
-    @media (max-width: 660px) {
-        align-items: end;
-    }
+    animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
 `;
 
-
+const StyledTimeline = styled(Timeline)`
+    .MuiTimelineItem-root {
+        &:before {
+            display: none;
+        }
+    }
+    
+    .MuiTimelineDot-root {
+        background: ${({ theme }) => theme.primary};
+        border: none;
+        box-shadow: 0 0 10px ${({ theme }) => theme.primary}40;
+        transition: all 0.3s ease-in-out;
+        
+        &:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px ${({ theme }) => theme.primary}60;
+        }
+    }
+    
+    .MuiTimelineConnector-root {
+        background: linear-gradient(180deg, ${({ theme }) => theme.primary} 0%, ${({ theme }) => theme.primary}40 100%);
+    }
+`;
 
 const index = () => {
     return (
@@ -83,23 +123,22 @@ const index = () => {
             <Wrapper>
                 <Title>Education</Title>
                 <Desc>
-                    My education has been a journey of self-discovery and growth. My educational details are as follows.
+                    My educational journey has been a path of continuous learning and growth. Here are my academic achievements.
                 </Desc>
                 <TimelineSection>
-                    <Timeline>
-                        {education.map((education,index) => (
-                            <TimelineItem >
+                    <StyledTimeline>
+                        {education.map((education, index) => (
+                            <TimelineItem key={index}>
                                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                                     <EducationCard education={education}/>
                                 </TimelineContent>
                                 <TimelineSeparator>
                                     <TimelineDot variant="outlined" color="secondary" />
-                                    {index !== experiences.length  && <TimelineConnector style={{ background: '#854CE6' }} />}
+                                    {index !== education.length - 1 && <TimelineConnector />}
                                 </TimelineSeparator>
                             </TimelineItem>
                         ))}
-                    </Timeline>
-
+                    </StyledTimeline>
                 </TimelineSection>
             </Wrapper>
         </Container>

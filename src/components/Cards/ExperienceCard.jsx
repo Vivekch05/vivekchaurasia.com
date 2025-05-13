@@ -1,37 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
-const Document = styled.img`
-    display: none;
-    height: 70px;
-    width: fit-content;
-    background-color: #000;
-    border-radius: 10px;
-    &:hover{
-        cursor: pointer;
-        opacity: 0.8;
-    }
-`
-
-const Description = styled.div`
-    width: 100%;
-    font-size: 15px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_primary + 99};
-    margin-bottom: 10px;
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
-
-const Span = styled.span`
-overflow: hidden;
-display: -webkit-box;
-max-width: 100%;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
-`
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 const Card = styled.div`
     width: 650px;
@@ -45,104 +24,120 @@ const Card = styled.div`
     flex-direction: column;
     gap: 12px;
     transition: all 0.3s ease-in-out;
-    &:hover{
+    border: 0.1px solid ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.card};
+    
+    &:hover {
         box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
         transform: translateY(-5px);
     }
-    @media only screen and (max-width: 768px){
-        padding: 10px;
-        gap: 8px;
+    
+    @media (max-width: 768px) {
         width: 300px;
     }
-
-    &:hover ${Document}{
-        display: flex;
-    }
-
-    &:hover ${Span}{
-        overflow: visible;
-        -webkit-line-clamp: unset;
-
-    }
-
-    border: 0.1px solid #306EE8;
-    box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
-`
+`;
 
 const Top = styled.div`
-    width: 100%;
     display: flex;
     gap: 12px
-`
+`;
 
 const Image = styled.img`
     height: 50px;
     background-color: #000;
     border-radius: 10px;
     margin-top: 4px;
-    @media only screen and (max-width: 768px){
+    transition: all 0.3s ease-in-out;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+    
+    @media (max-width: 768px) {
         height: 40px;
     }
-`
+`;
 
 const Body = styled.div`
-    width: 100%;
     display: flex;
     flex-direction: column; 
-`
-
+    width: 100%;
+`;
 
 const Role = styled.div`
     font-size: 18px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text_primary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 14px;
+    color: ${({ theme }) => theme.text_primary};
+    margin-bottom: 4px;
+    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    @media (max-width: 768px) {
+        font-size: 16px;
     }
-`
+`;
 
 const Company = styled.div`
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.text_secondary + 99};
-    @media only screen and (max-width: 768px){
+    color: ${({ theme }) => theme.text_secondary};
+    margin-bottom: 8px;
+    
+    @media (max-width: 768px) {
         font-size: 12px;
     }
-`
+`;
 
 const Date = styled.div`
     font-size: 12px;
     font-weight: 400;
     color: ${({ theme }) => theme.text_secondary + 80};
-    @media only screen and (max-width: 768px){
+    margin-bottom: 8px;
+    
+    @media (max-width: 768px) {
         font-size: 10px;
     }
-`
+`;
 
+const Description = styled.div`
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.text_secondary + 99};
+    margin-bottom: 10px;
+    line-height: 1.5;
+    
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+`;
 
 const Skills = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 12px;
-    margin-top: -10px;
-`
-
-const ItemWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-`
+    margin-top: 8px;
+`;
 
-const Skill = styled.div`
-    font-size: 15px;
+const Skill = styled.span`
+    font-size: 12px;
     font-weight: 400;
-    color: ${({ theme }) => theme.text_primary + 99};
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
+    color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.primary + 15};
+    padding: 4px 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    
+    &:hover {
+        background: ${({ theme }) => theme.primary + 30};
+        transform: translateY(-2px);
     }
-`
-
-
+    
+    @media (max-width: 768px) {
+        font-size: 10px;
+    }
+`;
 
 const ExperienceCard = ({ experience }) => {
     return (
@@ -156,31 +151,23 @@ const ExperienceCard = ({ experience }) => {
                 </Body>
             </Top>
             <Description>
-                {experience?.desc &&
-                    <Span>{experience?.desc}</Span>
-
-                }
-                {experience?.skills &&
+                {experience.desc}
+                {experience.desc2 && (
                     <>
-                        <br />
-                        <Skills>
-                            <b>Skills:</b>
-                            <ItemWrapper>
-                                {experience?.skills?.map((skill, index) => (
-                                    <Skill>• {skill}</Skill>
-                                ))}
-                            </ItemWrapper>
-                        </Skills>
+                        <br /><br />
+                        {experience.desc2}
                     </>
-                }
+                )}
             </Description>
-            {experience.doc &&
-                <a href={experience.doc} target="new">
-                    <Document src={experience.doc} />
-                </a>
-            }
+            {experience.skills && (
+                <Skills>
+                    {experience.skills.map((skill, index) => (
+                        <Skill key={index}>{skill}</Skill>
+                    ))}
+                </Skills>
+            )}
         </Card>
     )
 }
 
-export default ExperienceCard
+export default ExperienceCard 
