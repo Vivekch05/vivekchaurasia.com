@@ -120,7 +120,7 @@ export const CardContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 28px;
+    gap: 50px;
     flex-wrap: wrap;
     padding: 20px;
     animation: ${fadeIn} 0.8s ease-out 0.6s backwards;

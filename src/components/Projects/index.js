@@ -29,11 +29,6 @@ const Projects = ({openModal,setOpenModal}) => {
           <Divider />
           
           <Divider />
-          {/* {toggle === 'react native' ?
-            <ToggleButton active value="react native" onClick={() => setToggle('react native')}>React Native Application </ToggleButton>
-            :
-            <ToggleButton value="react native" onClick={() => setToggle('react native')}>React Native Application</ToggleButton>
-          } */}
         </ToggleButtonGroup>
         <CardContainer>
           {toggle === 'all' && projects

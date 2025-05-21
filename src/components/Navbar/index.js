@@ -1,5 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Nav, NavLink, NavbarContainer, Span, NavLogo, NavItems, GitHubButton, ButtonContainer, MobileIcon, MobileMenu, MobileNavLogo, MobileLink } from './NavbarStyledComponent';
+import {
+  Nav,
+  NavLink,
+  NavbarContainer,
+  Span,
+  NavLogo,
+  NavItems,
+  GitHubButton,
+  ButtonContainer,
+  MobileIcon,
+  MobileMenu,
+  MobileNavLogo,
+  MobileLink,
+  DrawerOverlay,
+  DrawerCloseIcon
+} from './NavbarStyledComponent';
 import { DiCssdeck } from 'react-icons/di';
 import { FaBars, FaTimes, FaGithub } from 'react-icons/fa';
 import { Bio } from '../../data/constants';
@@ -21,6 +36,15 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
+
+  // Prevent background scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
 
   const handleNavLinkClick = (e, id) => {
     e.preventDefault();
@@ -49,7 +73,9 @@ const Navbar = () => {
   return (
     <Nav style={{
       backgroundColor: scrolled ? `${theme.card_light}99` : theme.card_light,
-      backdropFilter: scrolled ? 'blur(10px)' : 'none'
+      backdropFilter: scrolled ? 'blur(10px)' : 'none',
+      boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.07)' : 'none',
+      transition: 'background 0.3s, box-shadow 0.3s'
     }}>
       <NavbarContainer>
         <NavLogo to='/'>
@@ -66,11 +92,7 @@ const Navbar = () => {
           </a>
         </NavLogo>
         <MobileIcon>
-          {isOpen ? (
-            <FaTimes onClick={() => setIsOpen(!isOpen)} />
-          ) : (
-            <FaBars onClick={() => setIsOpen(!isOpen)} />
-          )}
+          <FaBars onClick={() => setIsOpen(true)} />
         </MobileIcon>
         <NavItems>
           {navLinks.map((link) => (
@@ -95,33 +117,48 @@ const Navbar = () => {
           </GitHubButton>
         </ButtonContainer>
 
+        {/* Modern Drawer for Mobile */}
         {isOpen && (
-          <MobileMenu isOpen={isOpen}>
-            {navLinks.map((link) => (
-              <MobileLink
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={(e) => handleNavLinkClick(e, link.id)}
+          <>
+            <DrawerOverlay onClick={() => setIsOpen(false)} />
+            <MobileMenu isOpen={isOpen}>
+              <DrawerCloseIcon>
+                <FaTimes size={28} onClick={() => setIsOpen(false)} />
+              </DrawerCloseIcon>
+              <MobileNavLogo>
+                <DiCssdeck size="2.2rem" />
+                <Span>Portfolio</Span>
+              </MobileNavLogo>
+              {navLinks.map((link) => (
+                <MobileLink
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavLinkClick(e, link.id)}
+                >
+                  {link.label}
+                </MobileLink>
+              ))}
+              <GitHubButton
+                style={{
+                  padding: '12px 20px',
+                  background: `${theme.primary}`,
+                  color: 'white',
+                  width: '100%',
+                  borderRadius: '12px',
+                  marginTop: '2rem',
+                  fontWeight: 600,
+                  fontSize: '1.1rem'
+                }}
+                href={Bio.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit GitHub Profile"
               >
-                {link.label}
-              </MobileLink>
-            ))}
-            <GitHubButton
-              style={{
-                padding: '10px 16px',
-                background: `${theme.primary}`,
-                color: 'white',
-                width: 'max-content'
-              }}
-              href={Bio.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit GitHub Profile"
-            >
-              <FaGithub size={18} />
-              GitHub Profile
-            </GitHubButton>
-          </MobileMenu>
+                <FaGithub size={20} style={{ marginRight: 8 }} />
+                GitHub Profile
+              </GitHubButton>
+            </MobileMenu>
+          </>
         )}
       </NavbarContainer>
     </Nav>

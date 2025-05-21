@@ -1,22 +1,36 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
-const Button = styled.button`
+const Button = styled.a`
     display: none;
     width: 100%;
-    padding: 10px;
-    background-color: ${({ theme }) => theme.white};
-    color: ${({ theme }) => theme.text_black};
-    font-size: 14px;
+    padding: 10px 0;
+    background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.white};
+    font-size: 15px;
     font-weight: 700;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.8s ease-in-out;
-`
+    text-align: center;
+    text-decoration: none;
+    margin-top: 12px;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px ${({ theme }) => theme.primary + 30};
+
+    &:hover {
+        background-color: ${({ theme }) => theme.secondary};
+        color: ${({ theme }) => theme.white};
+        box-shadow: 0 4px 16px ${({ theme }) => theme.secondary + 30};
+    }
+
+    @media (max-width: 900px) {
+        display: block;
+    }
+`;
+
 const Card = styled.div`
-    width: 330px;
+    width: 400px;
     height: 490px;
     background-color: ${({ theme }) => theme.card};
     cursor: pointer;
@@ -36,7 +50,14 @@ const Card = styled.div`
     &:hover ${Button} {
         display: block;
     }
-`
+    @media (max-width: 900px) {
+        width: 100%;
+        height: auto;
+        &:hover ${Button} {
+            display: block;
+        }
+    }
+`;
 
 const Image = styled.img`
     width: 100%;
@@ -44,6 +65,7 @@ const Image = styled.img`
     background-color: ${({ theme }) => theme.white};
     border-radius: 10px;
     box-shadow: 0 0 16px 2px rgba(0,0,0,0.3);
+    object-fit: cover;
 `
 
 const Tags = styled.div`
@@ -80,7 +102,6 @@ const Title = styled.div`
     max-width: 100%;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     text-overflow: ellipsis;
 `
 
@@ -93,7 +114,6 @@ const Date = styled.div`
         font-size: 10px;
     }
 `
-
 
 const Description = styled.div`
     font-weight: 400;
@@ -122,13 +142,13 @@ const Avatar = styled.img`
     border: 3px solid ${({ theme }) => theme.card};
 `
 
-const ProjectCards = ({project,setOpenModal}) => {
+const ProjectCards = ({ project, setOpenModal }) => {
     return (
-        <Card onClick={() => setOpenModal({state: true, project: project})}>
-            <Image src={project.image}/>
+        <Card onClick={() => setOpenModal({ state: true, project: project })}>
+            <Image src={project.image} alt={project.title} />
             <Tags>
                 {project.tags?.map((tag, index) => (
-                <Tag>{tag}</Tag>
+                    <Tag key={index}>{tag}</Tag>
                 ))}
             </Tags>
             <Details>
@@ -136,12 +156,16 @@ const ProjectCards = ({project,setOpenModal}) => {
                 <Date>{project.date}</Date>
                 <Description>{project.description}</Description>
             </Details>
-            {/* <Members>
-                {project.member?.map((member) => (
-                    <Avatar src={member.img}/>
-                ))}
-            </Members> */}
-            {/* <Button>View Project</Button> */}
+            {project.webapp && (
+                <Button
+                    href={project.webapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                >
+                    View Project
+                </Button>
+            )}
         </Card>
     )
 }
