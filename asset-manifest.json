@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vivekchaurasia.com/static/css/main.bf538fe7.css",
-    "main.js": "/vivekchaurasia.com/static/js/main.a0c52be0.js",
+    "main.js": "/vivekchaurasia.com/static/js/main.deb08861.js",
     "static/media/hunger.png": "/vivekchaurasia.com/static/media/hunger.54649dd9555ca0db558d.png",
     "static/media/movie.png": "/vivekchaurasia.com/static/media/movie.0b44b6fec5dd3ce6cbaa.png",
     "static/media/game.png": "/vivekchaurasia.com/static/media/game.fc89c83e498cace57f2d.png",
@@ -9,10 +9,10 @@
     "static/media/VivekImage1.jpg": "/vivekchaurasia.com/static/media/VivekImage1.9ce654a1e45830f8c9ac.jpg",
     "index.html": "/vivekchaurasia.com/index.html",
     "main.bf538fe7.css.map": "/vivekchaurasia.com/static/css/main.bf538fe7.css.map",
-    "main.a0c52be0.js.map": "/vivekchaurasia.com/static/js/main.a0c52be0.js.map"
+    "main.deb08861.js.map": "/vivekchaurasia.com/static/js/main.deb08861.js.map"
   },
   "entrypoints": [
     "static/css/main.bf538fe7.css",
-    "static/js/main.a0c52be0.js"
+    "static/js/main.deb08861.js"
   ]
 }
