@@ -16,7 +16,7 @@ export const Bio = {
     "I am a proactive and adaptable professional with a strong commitment to continuous learning and delivering high-quality outcomes. With a positive attitude and a growth-oriented mindset, I approach challenges as opportunities for improvement and innovation. I am dedicated to making meaningful contributions and driving success within any team or organization.",
   github: "https://github.com/Vivekch05",
   resume:
-    "https://drive.google.com/file/d/1xYXM9ImPVDsLd1qLlYA9gXgBI0DBepx5/view?usp=sharing",
+    "https://drive.google.com/file/d/199539VMV4gJemy5_0gcPXTrme16Y261z/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/vivekch123/",
   twitter: "http://www.twitter.com/vivekch123",
   insta: "https://www.instagram.com/vivek_25_03/",

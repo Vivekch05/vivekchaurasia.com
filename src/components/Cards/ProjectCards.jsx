@@ -120,6 +120,7 @@ const Description = styled.div`
     color: ${({ theme }) => theme.text_secondary + 99};
     overflow: hidden;
     margin-top: 8px;
+    text-align: justify;
     display: -webkit-box;
     max-width: 100%;
     -webkit-line-clamp: 3;

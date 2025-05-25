@@ -28,6 +28,7 @@ const Description = styled.div`
     width: 100%;
     font-size: 15px;
     font-weight: 400;
+    text-align: justify;
     color: ${({ theme }) => theme.text_secondary + 99};
     margin-bottom: 10px;
     line-height: 1.5;
