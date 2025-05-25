@@ -202,6 +202,7 @@ function Footer() {
           <NavLink href="#experience" onClick={(e) => handleNavClick(e, 'experience')}>Experience</NavLink>
           <NavLink href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</NavLink>
           <NavLink href="#education" onClick={(e) => handleNavClick(e, 'education')}>Education</NavLink>
+          <NavLink href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</NavLink>
         </Nav>
         <SocialMediaIcons>
           <SocialMediaIcon 
