@@ -2,6 +2,8 @@ import hungerImg from '../images/hunger.png';
 import movieImg from '../images/movie.png';
 import gameImg from '../images/game.png';
 import portfolioImg from '../images/protfolio.png';
+import youtubeImg from '../images/Youtube.png';
+import whatsapp from '../images/whatsapp.png';
 
 export const Bio = {
   name: "Vivek Chaurasia",
@@ -318,6 +320,23 @@ export const projects = [
   },
   {
     id: 4,
+    title: "Youtube Clone",
+    date: "June 2025 - Present",
+    description: "This YouTube Clone is a front-end web application built using React.js, HTML, CSS, JavaScript, and Tailwind CSS. It replicates the basic UI and functionality of YouTube. The app includes a Home, Subscription, and Trending section, along with a responsive search bar, profile icon, and notification icon in the header. The design is clean and modern, thanks to Tailwind CSS, and React ensures smooth component-based structure and dynamic rendering.",
+    image: youtubeImg,
+    tags: [
+      "React Js",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+    ],
+    category: "web app",
+    github: "https://github.com/Vivekch05/youtube-clone",
+    webapp: "https://vivekch05.github.io/youtube-clone/",
+  },
+  {
+    id: 5,
     title: "Portfolio",
     date: "Jul 2024",
     description: "This is a personal portfolio website designed to showcase my professional background and online presence. It includes an About section introducing who I am, a Skills section highlighting my technical abilities, an Education section detailing my academic background, and an Experience section outlining my work history. The site also features a Contact section for direct communication, along with links to all my active social media profiles for easy networking and connection.",
@@ -332,6 +351,22 @@ export const projects = [
     category: "web app",
     github: "https://github.com/Vivekch05/vivekchaurasia.com",
     webapp: "https://Vivekch05.github.io/vivekchaurasia.com/",
+  },
+  {
+    id: 6,
+    title: "Whatsapp Clone",
+    date: "June 2025",
+    description: "This WhatsApp Clone is a front-end web application built using React.js, JavaScript, HTML, and CSS. It features an Edit Profile section for updating user information and a sidebar displaying all users with their profile icons. When a user clicks on a contact in the sidebar, a chat page opens, showing the conversation with that user. The app mimics WhatsApp’s clean and intuitive UI, providing a smooth and responsive user experience.",
+    image: whatsapp,
+    tags: [
+      "React JS",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+    category: "web app",
+    github: "https://github.com/Vivekch05/whatsapp-clone",
+    webapp: "https://Vivekch05.github.io/whatsapp-clone",
   },
 ];
 
