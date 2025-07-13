@@ -273,7 +273,7 @@ export const education = [
 ];
 
 export const projects = [
-  
+
   {
     id: 0,
     title: "Hunger",
@@ -283,7 +283,7 @@ export const projects = [
     tags: ["React Js", "Redux", "JavaScript", "Tailwind", "HTML", "CSS", "Jest", "React Testing Library"],
     category: "web app",
     github: "https://github.com/Vivekch05/Hunger",
-    webapp: "",
+    webapp: "https://hunger-2plj-jkmmn9t0v-vivek-chaurasias-projects.vercel.app/",
   },
   {
     id: 1,
@@ -383,7 +383,7 @@ export const projects = [
       "JavaScript",
       "HTML",
       "CSS",
-    ],  
+    ],
     category: "web app",
     github: "https://github.com/Vivekch05/whatsapp-clone",
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
