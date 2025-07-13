@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vivekchaurasia.com/static/css/main.bf538fe7.css",
-    "main.js": "/vivekchaurasia.com/static/js/main.48dd97ee.js",
+    "main.js": "/vivekchaurasia.com/static/js/main.06eb1b6c.js",
     "static/media/hunger.png": "/vivekchaurasia.com/static/media/hunger.54649dd9555ca0db558d.png",
     "static/media/Youtube.png": "/vivekchaurasia.com/static/media/Youtube.720ca192059c57b18f91.png",
     "static/media/movie.png": "/vivekchaurasia.com/static/media/movie.0b44b6fec5dd3ce6cbaa.png",
@@ -9,12 +9,13 @@
     "static/media/protfolio.png": "/vivekchaurasia.com/static/media/protfolio.0b5756a0f7b8622d9ec7.png",
     "static/media/VivekImage1.jpg": "/vivekchaurasia.com/static/media/VivekImage1.9ce654a1e45830f8c9ac.jpg",
     "static/media/whatsapp.png": "/vivekchaurasia.com/static/media/whatsapp.eb791ce565457a46645b.png",
+    "static/media/fileflow.png": "/vivekchaurasia.com/static/media/fileflow.343b2c3f85acbaa58b5f.png",
     "index.html": "/vivekchaurasia.com/index.html",
     "main.bf538fe7.css.map": "/vivekchaurasia.com/static/css/main.bf538fe7.css.map",
-    "main.48dd97ee.js.map": "/vivekchaurasia.com/static/js/main.48dd97ee.js.map"
+    "main.06eb1b6c.js.map": "/vivekchaurasia.com/static/js/main.06eb1b6c.js.map"
   },
   "entrypoints": [
     "static/css/main.bf538fe7.css",
-    "static/js/main.48dd97ee.js"
+    "static/js/main.06eb1b6c.js"
   ]
 }
