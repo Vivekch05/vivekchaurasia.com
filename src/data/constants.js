@@ -4,6 +4,7 @@ import gameImg from '../images/game.png';
 import portfolioImg from '../images/protfolio.png';
 import youtubeImg from '../images/Youtube.png';
 import whatsapp from '../images/whatsapp.png';
+import fileflow from '../images/fileflow.png';
 
 export const Bio = {
   name: "Vivek Chaurasia",
@@ -272,6 +273,7 @@ export const education = [
 ];
 
 export const projects = [
+  
   {
     id: 0,
     title: "Hunger",
@@ -285,6 +287,24 @@ export const projects = [
   },
   {
     id: 1,
+    title: "FileFlow Studio",
+    date: "July 2025",
+    description: "FileFlow Studio is an easy-to-use online tool for managing and sharing your files. You can quickly upload, organize, and share documents securely using simple drag-and-drop. It lets you see your files instantly and share them with custom links. It's built with modern tech (React and Tailwind CSS) to look good and work well on any device, always keeping your data safe and private.",
+    image: fileflow,
+    tags: [
+      "React JS",
+      "Tailwind",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "File Sharing"
+    ],
+    category: "web app",
+    github: "https://github.com/Vivekch05/fileflowstudio",
+    webapp: "https://fileflowstudio.vercel.app/",
+  },
+  {
+    id: 2,
     title: "Movie-Series App",
     date: "Oct 2022 - Oct 2022",
     description: "MovieSeriesInfo is a web application that lets users search for any movie and view detailed information, including the IMDb rating. The app features three main sections: a trending movies section showcasing popular titles, a category section with filters for Action, Comedy, Drama, Sci-Fi, Horror, Romance, Thriller, and Animation, and a search bar to look up specific movies. It provides a clean and intuitive interface for exploring and discovering movies across different genres.",
@@ -302,7 +322,7 @@ export const projects = [
     webapp: "https://Vivekch05.github.io/movie-series-info",
   },
   {
-    id: 2,
+    id: 3,
     title: "Tetris Game",
     date: "Jan 2023 - Jan 2023",
     description: "This is a web-based Tetris game where users can start the game using a start button and control the falling blocks using the arrow keys. Players can move the blocks left, right, and down, and rotate them using the up arrow key. The game tracks the player's score and level as they progress, and displays a Game Over message when the blocks stack up. It offers a smooth and responsive experience, bringing the classic Tetris gameplay to the browser.",
@@ -363,7 +383,7 @@ export const projects = [
       "JavaScript",
       "HTML",
       "CSS",
-    ],
+    ],  
     category: "web app",
     github: "https://github.com/Vivekch05/whatsapp-clone",
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
