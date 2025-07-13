@@ -283,7 +283,7 @@ export const projects = [
     tags: ["React Js", "Redux", "JavaScript", "Tailwind", "HTML", "CSS", "Jest", "React Testing Library"],
     category: "web app",
     github: "https://github.com/Vivekch05/Hunger",
-    webapp: "https://hunger-2plj-jkmmn9t0v-vivek-chaurasias-projects.vercel.app/",
+    webapp: "https://hunger-vivek-chaurasias-projects.vercel.app/",
   },
   {
     id: 1,
