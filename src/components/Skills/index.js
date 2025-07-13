@@ -93,22 +93,31 @@ export const Desc = styled.div`
 
 const SkillsContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  justify-content: center;
+  justify-items: center;
+  align-items: stretch;
+  margin-top: 30px;
   animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 `
 
 const Skill = styled.div`
   width: 100%;
-  max-width: 500px;
+  max-width: 320px;
   background: ${({ theme }) => theme.card};
   border: 1px solid ${({ theme }) => theme.primary}40;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  padding: 24px 36px;
+  padding: 24px 28px;
   transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;

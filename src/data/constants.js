@@ -305,7 +305,24 @@ export const projects = [
     webapp: "https://fileflowstudio.vercel.app/",
   },
   {
-    id: 2,
+    id: 2, // Use the next available id
+    title: "Flashcard Generator",
+    date: "July 2025",
+    description: "Flashcard Generator is a web application that allows users to easily create, customize, and study digital flashcards. Users can add questions and answers, organize flashcards into decks, and review them using an interactive study mode. The app is designed for students and lifelong learners, providing a simple and effective way to memorize information. Built with React and Tailwind CSS, it offers a clean, responsive interface and supports saving decks for future sessions.",
+    image: flashcard,// Replace with your own image if available
+    tags: [
+      "React JS",
+      "Tailwind",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+    category: "web app",
+    github: "https://github.com/Vivekch05/flashcard-generator", // Add your GitHub repo link if available
+    webapp: "https://flashcard-generator-vivek-chaurasias-projects.vercel.app/", // Add your deployed app link if available
+  },
+  {
+    id: 3,
     title: "Movie-Series App",
     date: "Oct 2022 - Oct 2022",
     description: "MovieSeriesInfo is a web application that lets users search for any movie and view detailed information, including the IMDb rating. The app features three main sections: a trending movies section showcasing popular titles, a category section with filters for Action, Comedy, Drama, Sci-Fi, Horror, Romance, Thriller, and Animation, and a search bar to look up specific movies. It provides a clean and intuitive interface for exploring and discovering movies across different genres.",
@@ -323,7 +340,7 @@ export const projects = [
     webapp: "https://Vivekch05.github.io/movie-series-info",
   },
   {
-    id: 3,
+    id: 4,
     title: "Tetris Game",
     date: "Jan 2023 - Jan 2023",
     description: "This is a web-based Tetris game where users can start the game using a start button and control the falling blocks using the arrow keys. Players can move the blocks left, right, and down, and rotate them using the up arrow key. The game tracks the player's score and level as they progress, and displays a Game Over message when the blocks stack up. It offers a smooth and responsive experience, bringing the classic Tetris gameplay to the browser.",
@@ -340,7 +357,7 @@ export const projects = [
     webapp: "https://vivekch05.github.io/Tetris-Game/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Youtube Clone",
     date: "June 2025 - Present",
     description: "This YouTube Clone is a front-end web application built using React.js, HTML, CSS, JavaScript, and Tailwind CSS. It replicates the basic UI and functionality of YouTube. The app includes a Home, Subscription, and Trending section, along with a responsive search bar, profile icon, and notification icon in the header. The design is clean and modern, thanks to Tailwind CSS, and React ensures smooth component-based structure and dynamic rendering.",
@@ -357,7 +374,7 @@ export const projects = [
     webapp: "https://vivekch05.github.io/youtube-clone/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Portfolio",
     date: "Jul 2024",
     description: "This is a personal portfolio website designed to showcase my professional background and online presence. It includes an About section introducing who I am, a Skills section highlighting my technical abilities, an Education section detailing my academic background, and an Experience section outlining my work history. The site also features a Contact section for direct communication, along with links to all my active social media profiles for easy networking and connection.",
@@ -374,7 +391,7 @@ export const projects = [
     webapp: "https://Vivekch05.github.io/vivekchaurasia.com/",
   },
   {
-    id: 6,
+    id: 7,
     title: "Whatsapp Clone",
     date: "June 2025",
     description: "This WhatsApp Clone is a front-end web application built using React.js, JavaScript, HTML, and CSS. It features an Edit Profile section for updating user information and a sidebar displaying all users with their profile icons. When a user clicks on a contact in the sidebar, a chat page opens, showing the conversation with that user. The app mimics WhatsApp’s clean and intuitive UI, providing a smooth and responsive user experience.",
@@ -389,23 +406,7 @@ export const projects = [
     github: "https://github.com/Vivekch05/whatsapp-clone",
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
   },
-  {
-    id: 7, // Use the next available id
-    title: "Flashcard Generator",
-    date: "July 2025",
-    description: "Flashcard Generator is a web application that allows users to easily create, customize, and study digital flashcards. Users can add questions and answers, organize flashcards into decks, and review them using an interactive study mode. The app is designed for students and lifelong learners, providing a simple and effective way to memorize information. Built with React and Tailwind CSS, it offers a clean, responsive interface and supports saving decks for future sessions.",
-    image: flashcard ,// Replace with your own image if available
-    tags: [
-      "React JS",
-      "Tailwind",
-      "JavaScript",
-      "HTML",
-      "CSS",
-    ],
-    category: "web app",
-    github: "https://github.com/Vivekch05/flashcard-generator", // Add your GitHub repo link if available
-    webapp: "https://flashcard-generator-vivek-chaurasias-projects.vercel.app/", // Add your deployed app link if available
-  },
+
 ];
 
 export const TimeLineData = [

@@ -30,7 +30,7 @@ const Button = styled.a`
 `;
 
 const Card = styled.div`
-    width: 400px;
+    width: 320px;
     height: 490px;
     background-color: ${({ theme }) => theme.card};
     cursor: pointer;

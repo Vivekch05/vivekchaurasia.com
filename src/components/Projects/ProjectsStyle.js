@@ -117,15 +117,20 @@ export const Divider = styled.div`
 `;
 
 export const CardContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: stretch;
     gap: 50px;
-    flex-wrap: wrap;
     padding: 20px;
     animation: ${fadeIn} 0.8s ease-out 0.6s backwards;
     
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
     @media (max-width: 768px) {
+        grid-template-columns: 1fr;
         gap: 20px;
         padding: 10px;
     }
