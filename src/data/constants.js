@@ -390,7 +390,7 @@ export const projects = [
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
   },
   {
-    id: 8, // Use the next available id
+    id: 7, // Use the next available id
     title: "Flashcard Generator",
     date: "July 2025",
     description: "Flashcard Generator is a web application that allows users to easily create, customize, and study digital flashcards. Users can add questions and answers, organize flashcards into decks, and review them using an interactive study mode. The app is designed for students and lifelong learners, providing a simple and effective way to memorize information. Built with React and Tailwind CSS, it offers a clean, responsive interface and supports saving decks for future sessions.",
