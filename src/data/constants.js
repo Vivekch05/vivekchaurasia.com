@@ -5,6 +5,7 @@ import portfolioImg from '../images/protfolio.png';
 import youtubeImg from '../images/Youtube.png';
 import whatsapp from '../images/whatsapp.png';
 import fileflow from '../images/fileflow.png';
+import flashcard from '../images/flashcard.png';
 
 export const Bio = {
   name: "Vivek Chaurasia",
@@ -387,6 +388,23 @@ export const projects = [
     category: "web app",
     github: "https://github.com/Vivekch05/whatsapp-clone",
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
+  },
+  {
+    id: 8, // Use the next available id
+    title: "Flashcard Generator",
+    date: "July 2025",
+    description: "Flashcard Generator is a web application that allows users to easily create, customize, and study digital flashcards. Users can add questions and answers, organize flashcards into decks, and review them using an interactive study mode. The app is designed for students and lifelong learners, providing a simple and effective way to memorize information. Built with React and Tailwind CSS, it offers a clean, responsive interface and supports saving decks for future sessions.",
+    image: flashcard ,// Replace with your own image if available
+    tags: [
+      "React JS",
+      "Tailwind",
+      "JavaScript",
+      "HTML",
+      "CSS",
+    ],
+    category: "web app",
+    github: "https://github.com/Vivekch05/flashcard-generator", // Add your GitHub repo link if available
+    webapp: "https://flashcard-generator-vivek-chaurasias-projects.vercel.app/", // Add your deployed app link if available
   },
 ];
 
