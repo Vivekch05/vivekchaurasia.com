@@ -1,25 +1,31 @@
 import React from 'react'
 import HeroBgAnimation from '../HeroBgAnimation'
-import { HeroContainer, HeroBg, HeroLeftContainer, Img, HeroRightContainer, HeroInnerContainer, TextLoop, Title, Span, SubTitle, ResumeButton } from './HeroStyle'
+import { HeroContainer, HeroBg, HeroLeftContainer, Img, HeroRightContainer, HeroInnerContainer, TextLoop, Title, Span, SubTitle, ResumeButton, GlassImageCard } from './HeroStyle'
 import VivekImg from '../../images/VivekImage1.jpg'
 import Typewriter from 'typewriter-effect';
 import { Bio } from '../../data/constants';
+import { motion } from 'framer-motion';
+
+const heroVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.8, 0.25, 1] } }
+};
 
 const HeroSection = () => {
     return (
         <div id="about">
-            <HeroContainer>
+            <HeroContainer as={motion.section} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={heroVariants}>
                 <HeroBg>
                     <HeroBgAnimation />
                 </HeroBg>
                 <HeroInnerContainer>
                     <HeroLeftContainer id="Left">
-                        <Title>
-                            <span style={{ display: 'block', fontSize: '0.8em', marginBottom: '10px' }}>👋 Hello, I'm</span>
+                        <Title style={{ fontFamily: "'Merriweather', serif" }}>
+                            <span style={{ display: 'block', fontSize: '1.1em', marginBottom: '18px', color: '#D4AF37', fontWeight: 700 }}>👋 Hello, I'm</span>
                             {Bio.name}
                         </Title>
                         <TextLoop>
-                            I am a
+                            <span style={{ fontFamily: 'Inter, Open Sans, sans-serif', fontWeight: 500 }}>I am a</span>
                             <Span>
                                 <Typewriter
                                     options={{
@@ -32,7 +38,7 @@ const HeroSection = () => {
                                 />
                             </Span>
                         </TextLoop>
-                        <SubTitle>{Bio.description}</SubTitle>
+                        <SubTitle style={{ fontFamily: 'Inter, Open Sans, sans-serif' }}>{Bio.description}</SubTitle>
                         <ResumeButton 
                             href={Bio.resume} 
                             target='_blank'
@@ -43,11 +49,17 @@ const HeroSection = () => {
                     </HeroLeftContainer>
 
                     <HeroRightContainer id="Right">
-                        <Img 
-                            src={VivekImg} 
-                            alt="hero-image" 
-                            loading="eager"
-                        />
+                        <GlassImageCard
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                          <Img 
+                              src={VivekImg} 
+                              alt="hero-image" 
+                              loading="eager"
+                          />
+                        </GlassImageCard>
                     </HeroRightContainer>
                 </HeroInnerContainer>
             </HeroContainer>

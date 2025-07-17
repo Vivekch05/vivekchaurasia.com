@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { motion } from 'framer-motion';
 
 const fadeIn = keyframes`
   from {
@@ -12,49 +13,50 @@ const fadeIn = keyframes`
   }
 `;
 
-const Card = styled.div`
+const GlassCard = styled(motion.div)`
     width: 650px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    padding: 12px 16px;
+    border-radius: 22px;
+    box-shadow: ${({ theme }) => theme.shadow};
+    padding: 22px 28px;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: all 0.3s ease-in-out;
-    border: 0.1px solid ${({ theme }) => theme.primary};
-    background: ${({ theme }) => theme.card};
-    
+    border: 1.5px solid ${({ theme }) => theme.primary}33;
+    background: ${({ theme }) => theme.glass};
+    transition: box-shadow 0.3s, border 0.3s, transform 0.3s;
     &:hover {
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        transform: translateY(-5px);
+        box-shadow: 0 15px 40px ${({ theme }) => theme.primary}22;
+        border: 1.5px solid ${({ theme }) => theme.primary};
+        transform: translateY(-7px) scale(1.03);
     }
-    
     @media (max-width: 768px) {
-        width: 300px;
+        width: 98vw;
+        padding: 14px 6px;
     }
 `;
 
 const Top = styled.div`
     display: flex;
-    gap: 12px
+    gap: 18px;
 `;
 
 const Image = styled.img`
-    height: 50px;
+    height: 54px;
+    width: 54px;
     background-color: #000;
-    border-radius: 10px;
+    border-radius: 14px;
     margin-top: 4px;
     transition: all 0.3s ease-in-out;
-    
+    object-fit: cover;
     &:hover {
         transform: scale(1.1);
     }
-    
     @media (max-width: 768px) {
         height: 40px;
+        width: 40px;
     }
 `;
 
@@ -65,25 +67,24 @@ const Body = styled.div`
 `;
 
 const Role = styled.div`
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: ${({ theme }) => theme.text_primary};
+    font-family: 'Merriweather', serif;
     margin-bottom: 4px;
     background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
     @media (max-width: 768px) {
         font-size: 16px;
     }
 `;
 
 const Company = styled.div`
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     color: ${({ theme }) => theme.text_secondary};
     margin-bottom: 8px;
-    
     @media (max-width: 768px) {
         font-size: 12px;
     }
@@ -94,7 +95,6 @@ const Date = styled.div`
     font-weight: 400;
     color: ${({ theme }) => theme.text_secondary + 80};
     margin-bottom: 8px;
-    
     @media (max-width: 768px) {
         font-size: 10px;
     }
@@ -108,7 +108,6 @@ const Description = styled.div`
     color: ${({ theme }) => theme.text_secondary + 99};
     margin-bottom: 10px;
     line-height: 1.5;
-    
     @media (max-width: 768px) {
         font-size: 12px;
     }
@@ -122,19 +121,19 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.span`
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 500;
     color: ${({ theme }) => theme.primary};
-    background: ${({ theme }) => theme.primary + 15};
-    padding: 4px 8px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}22, ${({ theme }) => theme.accent}22);
+    padding: 5px 13px;
     border-radius: 12px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 4px ${({ theme }) => theme.primary}11;
     transition: all 0.3s ease-in-out;
-    
     &:hover {
-        background: ${({ theme }) => theme.primary + 30};
-        transform: translateY(-2px);
+        background: linear-gradient(90deg, ${({ theme }) => theme.accent}22, ${({ theme }) => theme.primary}22);
+        transform: translateY(-2px) scale(1.07);
     }
-    
     @media (max-width: 768px) {
         font-size: 10px;
     }
@@ -142,7 +141,11 @@ const Skill = styled.span`
 
 const ExperienceCard = ({ experience }) => {
     return (
-        <Card>
+        <GlassCard
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
             <Top>
                 <Image src={experience.img} />
                 <Body>
@@ -167,7 +170,7 @@ const ExperienceCard = ({ experience }) => {
                     ))}
                 </Skills>
             )}
-        </Card>
+        </GlassCard>
     )
 }
 

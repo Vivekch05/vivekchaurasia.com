@@ -3,10 +3,23 @@ import { useState } from 'react'
 import { Container, Wrapper, Title, Desc, CardContainer, ToggleButtonGroup, ToggleButton, Divider } from './ProjectsStyle'
 import ProjectCard from '../Cards/ProjectCards'
 import { projects } from '../../data/constants'
+import { motion, AnimatePresence } from 'framer-motion';
 
+const containerVariants = {
+  visible: {
+    transition: {
+      staggerChildren: 0.13,
+    },
+  },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const Projects = ({openModal,setOpenModal}) => {
   const [toggle, setToggle] = useState('all');
+  const filteredProjects = toggle === 'all' ? projects : projects.filter((item) => item.category === toggle);
   return (
     <Container id="projects">
       <Wrapper>
@@ -30,16 +43,14 @@ const Projects = ({openModal,setOpenModal}) => {
           
           <Divider />
         </ToggleButtonGroup>
-        <CardContainer>
-          {toggle === 'all' && projects
-            .map((project) => (
-              <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}/>
+        <CardContainer as={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <AnimatePresence>
+            {filteredProjects.map((project, idx) => (
+              <motion.div key={project.id} variants={cardVariants} exit={{ opacity: 0, y: 40 }}>
+                <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}/>
+              </motion.div>
             ))}
-          {projects
-            .filter((item) => item.category == toggle)
-            .map((project) => (
-              <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}/>
-            ))}
+          </AnimatePresence>
         </CardContainer>
       </Wrapper>
     </Container>

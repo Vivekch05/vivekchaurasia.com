@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import _default from "../../themes/default";
+import { motion } from "framer-motion";
 
 const float = keyframes`
   0% { transform: translateY(0px); }
@@ -7,20 +8,39 @@ const float = keyframes`
   100% { transform: translateY(0px); }
 `;
 
+export const GlassImageCard = styled(motion.div)`
+  background: ${({ theme }) => theme.glass};
+  box-shadow: ${({ theme }) => theme.shadow};
+  backdrop-filter: blur(12px);
+  border-radius: 32px;
+  border: 1.5px solid ${({ theme }) => theme.primary}33;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.3s, border 0.3s;
+  @media (max-width: 768px) {
+    padding: 8px;
+    border-radius: 20px;
+  }
+`;
+
 export const HeroContainer = styled.div`
-  background: linear-gradient(135deg, ${({ theme }) => theme.card_light} 0%, ${({ theme }) => theme.card_light}99 100%);
+  min-height: 100vh;
+  background: linear-gradient(135deg, ${({ theme }) => theme.bgLight} 0%, ${({ theme }) => theme.bg} 100%);
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-  padding: 100px 30px;
+  padding: 120px 30px 80px 30px;
   @media (max-width: 960px) {
-    padding: 66px 16px;
+    padding: 80px 16px 40px 16px;
   }
-  @media (max-width: 640) {
-    padding: 32px 16px;
+  @media (max-width: 640px) {
+    padding: 40px 8px 20px 8px;
   }
   z-index: 1;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
+  clip-path: none;
 `;
 
 export const HeroBg = styled.div`

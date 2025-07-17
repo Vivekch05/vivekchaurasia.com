@@ -19,7 +19,7 @@ export const Bio = {
     "Programmer",
   ],
   description:
-    "I am a proactive and adaptable professional with a strong commitment to continuous learning and delivering high-quality outcomes. With a positive attitude and a growth-oriented mindset, I approach challenges as opportunities for improvement and innovation. I am dedicated to making meaningful contributions and driving success within any team or organization.",
+    "I'm a dedicated professional committed to continuous learning and achieving excellent outcomes. I tackle challenges with a positive, growth-oriented mindset, always looking for ways to innovate and improve. I'm eager to make a strong impact wherever I go.",
   github: "https://github.com/Vivekch05",
   resume:
     "https://drive.google.com/file/d/199539VMV4gJemy5_0gcPXTrme16Y261z/view?usp=sharing",
@@ -47,7 +47,7 @@ export const skills = [
       },
       {
         name: "Recoil",
-        image: "https://cdn.worldvectorlogo.com/logos/recoil.svg"
+        image: "https://raw.githubusercontent.com/recoiljs/recoil/gh-pages/img/recoil.svg"
       },
       {
         name: "JavaScript",
@@ -59,7 +59,7 @@ export const skills = [
       },
       {
         name: "GraphQL",
-        image: "https://cdn.worldvectorlogo.com/logos/graphql.svg"
+        image: "https://cdn.worldvectorlogo.com/logos/graphql-11.svg"
       },
       {
         name: "Apollo Client",
@@ -75,11 +75,11 @@ export const skills = [
       },
       {
         name: "HTML5",
-        image: "https://cdn.worldvectorlogo.com/logos/html-5.svg"
+        image: "https://cdn.worldvectorlogo.com/logos/html5-2.svg"
       },
       {
         name: "CSS3",
-        image: "https://cdn.worldvectorlogo.com/logos/css-5.svg"
+        image: "https://cdn.worldvectorlogo.com/logos/css3.svg"
       },
       {
         name: "Tailwind",
@@ -145,8 +145,24 @@ export const skills = [
       },
       {
         name: "Figma",
-        image: "https://cdn.worldvectorlogo.com/logos/figma-1.svg"
-      }
+        image: "https://cdn.worldvectorlogo.com/logos/figma.svg"
+      },
+      {
+        name: "Cursor AI",
+        image: "https://cdn-icons-png.flaticon.com/512/4712/4712037.png"
+      },
+      {
+        name: "GitHub Copilot",
+        image: "https://seeklogo.com/images/G/github-copilot-logo-5E2FDCB55B-seeklogo.com.png"
+      },
+      {
+        name: "Notion",
+        image: "https://cdn.worldvectorlogo.com/logos/notion-logo.svg"
+      },
+      {
+        name: "Slack",
+        image: "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg"
+      },
     ]
   }, {
     title: "Testing & Quality",
@@ -166,7 +182,19 @@ export const skills = [
       {
         name: "NVDA",
         image: "https://cdn.worldvectorlogo.com/logos/nvda.svg"
-      }
+      },
+      {
+        name: "Cypress",
+        image: "https://cdn.worldvectorlogo.com/logos/cypress-io-1.svg"
+      },
+      {
+        name: "Playwright",
+        image: "https://cdn.worldvectorlogo.com/logos/microsoft-playwright.svg"
+      },
+      {
+        name: "Storybook",
+        image: "https://cdn.worldvectorlogo.com/logos/storybook-icon.svg"
+      },
     ]
   },
 ];

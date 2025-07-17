@@ -1,5 +1,6 @@
 import { Link as LinkR } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
 import _default from '../../themes/default';
 
 const fadeIn = keyframes`
@@ -31,21 +32,23 @@ const shimmer = keyframes`
   }
 `;
 
-export const Nav = styled.div`
-    background-color: ${({theme}) => theme.card_light};
+export const Nav = styled(motion.div)`
+    background: rgba(24,28,36,0.72);
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid ${({theme}) => theme.primary + 20};
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    border-bottom: 1.5px solid ${({theme}) => theme.primary}33;
+    box-shadow: 0 4px 24px 0 rgba(31,38,135,0.10);
     animation: ${fadeIn} 0.5s ease-out;
-    
+    transition: background 0.3s, box-shadow 0.3s, border 0.3s;
     @media (max-width: 960px) {
         transition: 0.8s all ease;
     }
@@ -70,7 +73,10 @@ export const NavLogo = styled(LinkR)`
     align-items: center;
     text-decoration: none;
     animation: ${slideIn} 0.5s ease-out;
-    
+    font-family: 'Merriweather', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     @media (max-width: 640px) {
         padding: 0 0px;
     }
@@ -113,29 +119,28 @@ export const NavLink = styled.a`
     text-decoration: none;
     position: relative;
     padding: 8px 0;
-    
+    font-family: 'Inter', 'Open Sans', sans-serif;
+    font-size: 1.08rem;
     &::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         width: 0;
-        height: 2px;
-        background: ${({ theme }) => theme.primary};
+        height: 2.5px;
+        background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+        border-radius: 2px;
         transition: width 0.3s ease;
     }
-    
-    &:hover {
+    &:hover, &:active, &:focus {
         color: ${({ theme }) => theme.primary};
-        
+        text-decoration: none;
         &::after {
             width: 100%;
         }
     }
-
     &.active {
         color: ${({ theme }) => theme.primary};
-        
         &::after {
             width: 100%;
         }
@@ -247,15 +252,15 @@ export const MobileMenu = styled.div`
   height: 100vh;
   width: 85vw;
   max-width: 340px;
-  background: ${({ theme }) => theme.card_light};
-  box-shadow: -2px 0 16px rgba(0,0,0,0.12);
-  z-index: 1002;
+  background: rgba(24,28,36,0.92);
+  backdrop-filter: blur(16px);
+  border-left: 1.5px solid ${({ theme }) => theme.primary}33;
+  box-shadow: 0 4px 24px 0 rgba(31,38,135,0.10);
+  z-index: 1100;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 2rem 2rem 2rem;
-  transform: ${({ isOpen }) => isOpen ? 'translateX(0)' : 'translateX(100%)'};
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  animation: fadeIn 0.3s;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  animation: ${slideIn} 0.5s ease-out;
 `;
 
 export const DrawerCloseIcon = styled.div`

@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import emailjs from '@emailjs/browser';
 import { Snackbar, Alert } from '@mui/material';
 import { Send, Email, Person, Subject, Message } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 
 const fadeIn = keyframes`
   from {
@@ -24,19 +25,15 @@ const shimmer = keyframes`
   }
 `;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     z-index: 1;
     align-items: center;
-    padding: 40px 0;
-    background: linear-gradient(180deg, rgba(132, 59, 206, 0.05) 0%, rgba(132, 59, 206, 0) 100%);
-    
-    @media (max-width: 960px) {
-        padding: 20px 0;
-    }
+    padding: 64px 0 48px 0;
+    background: linear-gradient(120deg, ${({ theme }) => theme.bgLight} 60%, ${({ theme }) => theme.bg} 100%);
 `;
 
 const Wrapper = styled.div`
@@ -57,37 +54,28 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-    font-size: 42px;
+    font-size: 44px;
     text-align: center;
-    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
     margin-top: 20px;
     color: ${({ theme }) => theme.text_primary};
-    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: ${fadeIn} 0.8s ease-out;
     position: relative;
-    
+    margin-bottom: 18px;
+    animation: ${fadeIn} 0.8s ease-out;
     &::after {
         content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
+        display: block;
+        margin: 18px auto 0 auto;
+        width: 80px;
         height: 4px;
-        background: linear-gradient(90deg, ${({ theme }) => theme.primary}, transparent);
         border-radius: 2px;
+        background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
     }
-    
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 32px;
-        
-        &::after {
-            width: 60px;
-            height: 3px;
-        }
+        &::after { width: 48px; height: 3px; }
     }
 `;
 
@@ -107,21 +95,20 @@ const Desc = styled.div`
     }
 `;
 
-const ContactForm = styled.form`
+const ContactForm = styled(motion.form)`
     width: 95%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
-    background-color: ${({ theme }) => theme.card};
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: ${({ theme }) => theme.glass};
+    padding: 36px 32px 32px 32px;
+    border-radius: 22px;
+    box-shadow: ${({ theme }) => theme.shadow};
     margin-top: 28px;
-    gap: 16px;
-    animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
-    border: 1px solid ${({ theme }) => theme.primary + 20};
+    gap: 18px;
+    border: 1.5px solid ${({ theme }) => theme.primary}33;
     backdrop-filter: blur(10px);
-    
+    animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
     @media (max-width: 768px) {
         padding: 24px;
         gap: 12px;

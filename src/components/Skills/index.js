@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { skills } from '../../data/constants'
+import { motion } from 'framer-motion';
 
 const fadeIn = keyframes`
   from {
@@ -13,27 +14,6 @@ const fadeIn = keyframes`
   }
 `;
 
-const float = keyframes`
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-`;
-
-const shimmer = keyframes`
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,9 +22,8 @@ const Container = styled.div`
   z-index: 1;
   align-items: center;
   padding: 80px 0;
-  background: linear-gradient(180deg, ${({ theme }) => theme.card_light} 0%, ${({ theme }) => theme.card_light}99 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-`
+  background: linear-gradient(120deg, ${({ theme }) => theme.bgLight} 60%, ${({ theme }) => theme.bg} 100%);
+`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -59,22 +38,31 @@ const Wrapper = styled.div`
   @media (max-width: 960px) {
     flex-direction: column;
   }
-`
+`;
 
 export const Title = styled.div`
-  font-size: 42px;
+  font-size: 44px;
   text-align: center;
-  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  font-weight: 800;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
-  background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  position: relative;
+  margin-bottom: 18px;
   animation: ${fadeIn} 0.8s ease-out;
-  
+  &::after {
+    content: '';
+    display: block;
+    margin: 18px auto 0 auto;
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+  }
   @media (max-width: 768px) {
     margin-top: 12px;
     font-size: 32px;
+    &::after { width: 48px; height: 3px; }
   }
 `;
 
@@ -85,13 +73,12 @@ export const Desc = styled.div`
   color: ${({ theme }) => theme.text_secondary};
   margin-bottom: 20px;
   animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
-  
   @media (max-width: 768px) {
     font-size: 16px;
   }
 `;
 
-const SkillsContainer = styled.div`
+const SkillsContainer = styled(motion.div)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -99,7 +86,6 @@ const SkillsContainer = styled.div`
   justify-items: center;
   align-items: stretch;
   margin-top: 30px;
-  animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -108,65 +94,37 @@ const SkillsContainer = styled.div`
     grid-template-columns: 1fr;
     gap: 16px;
   }
-`
+`;
 
-const Skill = styled.div`
+const GlassSkill = styled(motion.div)`
   width: 100%;
   max-width: 320px;
-  background: ${({ theme }) => theme.card};
-  border: 1px solid ${({ theme }) => theme.primary}40;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  padding: 24px 28px;
-  transition: all 0.3s ease-in-out;
+  background: ${({ theme }) => theme.glass};
+  border: 1.5px solid ${({ theme }) => theme.primary}33;
+  box-shadow: ${({ theme }) => theme.shadow};
+  border-radius: 22px;
+  padding: 28px 24px 24px 24px;
+  transition: box-shadow 0.3s, border 0.3s, transform 0.3s;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      ${({ theme }) => theme.primary}10,
-      transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease-in-out;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border-color: ${({ theme }) => theme.primary}80;
-    
-    &::before {
-      transform: translateX(100%);
-    }
+    box-shadow: 0 15px 40px ${({ theme }) => theme.primary}22;
+    border: 1.5px solid ${({ theme }) => theme.primary};
+    transform: translateY(-7px) scale(1.03);
   }
-  
-  @media (max-width: 768px) {
-    max-width: 400px;
-    padding: 20px 24px;
-  }
-  @media (max-width: 500px) {
-    max-width: 330px;
-    padding: 16px 20px;
-  }
-`
+`;
 
 const SkillTitle = styled.h2`
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 700;
   color: ${({ theme }) => theme.text_primary};
   margin-bottom: 24px;
   text-align: center;
+  font-family: 'Merriweather', serif;
   position: relative;
-  
   &::after {
     content: '';
     position: absolute;
@@ -175,10 +133,10 @@ const SkillTitle = styled.h2`
     transform: translateX(-50%);
     width: 50px;
     height: 3px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.primary}80);
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
     border-radius: 2px;
   }
-`
+`;
 
 const SkillList = styled.div`
   display: flex;
@@ -186,9 +144,9 @@ const SkillList = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 20px;
-`
+`;
 
-const SkillItem = styled.div`
+const SkillItem = styled(motion.div)`
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.text_primary};
@@ -203,34 +161,11 @@ const SkillItem = styled.div`
   transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      ${({ theme }) => theme.primary}20,
-      transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease-in-out;
-  }
-  
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.07);
     background: ${({ theme }) => theme.primary}10;
     border-color: ${({ theme }) => theme.primary};
-    
-    &::before {
-      transform: translateX(100%);
-    }
   }
-  
   @media (max-width: 768px) {
     font-size: 14px;
     padding: 10px 14px;
@@ -239,41 +174,75 @@ const SkillItem = styled.div`
     font-size: 14px;
     padding: 8px 12px;
   }
-`
+`;
 
-const SkillImage = styled.img`
+const SkillImage = styled(motion.img)`
   width: 24px;
   height: 24px;
   transition: all 0.3s ease-in-out;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  
-  ${SkillItem}:hover & {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-  }
-`
+`;
+
+const containerVariants = {
+  visible: {
+    transition: {
+      staggerChildren: 0.13,
+    },
+  },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const Skills = () => {
+  // Helper to split skills into rows of 2, moving long names to last row
+  const getSkillRows = (skillsArr) => {
+    const longSkills = skillsArr.filter(s => s.name.length > 16);
+    const shortSkills = skillsArr.filter(s => s.name.length <= 16);
+    const rows = [];
+    for (let i = 0; i < shortSkills.length; i += 2) {
+      rows.push(shortSkills.slice(i, i + 2));
+    }
+    // Add each long skill as its own row at the end
+    longSkills.forEach(ls => rows.push([ls]));
+    return rows;
+  };
+
   return (
     <Container id="skills">
       <Wrapper>
         <Title>Skills</Title>
         <Desc>
-          Here are some of my skills on which I have been working on for the past 5 years.
+          Here are some of my skills on which I have been working on for the past couple of years.
         </Desc>
-        <SkillsContainer>
+        <SkillsContainer
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {skills.map((skill, index) => (
-            <Skill key={index}>
+            <GlassSkill key={index} variants={cardVariants} whileHover={{ scale: 1.04 }}>
               <SkillTitle>{skill.title}</SkillTitle>
-              <SkillList>
-                {skill.skills.map((item, index) => (
-                  <SkillItem key={index}>
-                    <SkillImage src={item.image} alt={item.name}/>
-                    {item.name}
-                  </SkillItem>
+              <SkillList style={{flexDirection: 'column', gap: '10px', width: '100%'}}>
+                {getSkillRows(skill.skills).map((row, rowIdx) => (
+                  <div key={rowIdx} style={{ display: 'flex', gap: '16px', width: '100%' }}>
+                    {row.map((item, idx) => (
+                      <SkillItem key={idx} whileHover={{ scale: 1.12, backgroundColor: '#D4AF3722' }} style={{flex: 1, minWidth: 0}}>
+                        <SkillImage
+                          src={item.image}
+                          alt={item.name}
+                          whileHover={{ rotate: 8, scale: 1.18 }}
+                          transition={{ type: 'spring', stiffness: 300 }}
+                        />
+                        {item.name}
+                      </SkillItem>
+                    ))}
+                  </div>
                 ))}
               </SkillList>
-            </Skill>
+            </GlassSkill>
           ))}
         </SkillsContainer>
       </Wrapper>

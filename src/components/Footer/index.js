@@ -4,6 +4,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Bio } from '../../data/constants';
+import { motion } from 'framer-motion';
 
 const fadeIn = keyframes`
   from {
@@ -28,13 +29,15 @@ const float = keyframes`
   }
 `;
 
-const FooterContainer = styled.div`
+const FooterContainer = styled(motion.div)`
   width: 100%;
   padding: 2rem 0;
   display: flex;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(132, 59, 206, 0.05) 0%, rgba(132, 59, 206, 0) 100%);
-  border-top: 1px solid ${({ theme }) => theme.primary + 20};
+  background: ${({ theme }) => theme.glass};
+  border-top: 2.5px solid ${({ theme }) => theme.primary};
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -4px 24px 0 rgba(31,38,135,0.08);
 `;
 
 const FooterWrapper = styled.footer`
@@ -50,14 +53,14 @@ const FooterWrapper = styled.footer`
 `;
 
 const Logo = styled.h1`
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 800;
+  font-size: 26px;
+  font-family: 'Merriweather', serif;
   background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
   position: relative;
-  
   &::after {
     content: '';
     position: absolute;
@@ -66,7 +69,7 @@ const Logo = styled.h1`
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, transparent);
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
     border-radius: 2px;
   }
 `;
@@ -79,7 +82,6 @@ const Nav = styled.nav`
   flex-direction: row;
   gap: 2rem;
   justify-content: center;
-  
   @media (max-width: 768px) {
     flex-wrap: wrap;
     gap: 1rem;
@@ -97,26 +99,25 @@ const NavLink = styled.a`
   transition: all 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
-  
+  font-family: 'Inter', 'Open Sans', sans-serif;
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: ${({ theme }) => theme.primary};
+    height: 2.5px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+    border-radius: 2px;
     transition: width 0.3s ease;
   }
-  
-  &:hover {
+  &:hover, &:active, &:focus {
     color: ${({ theme }) => theme.primary};
-    
+    text-decoration: none;
     &::after {
       width: 100%;
     }
   }
-  
   @media (max-width: 768px) {
     font-size: 1rem;
   }
@@ -140,7 +141,6 @@ const SocialMediaIcon = styled.a`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
   &::before {
     content: '';
     position: absolute;
@@ -151,18 +151,15 @@ const SocialMediaIcon = styled.a`
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: 0.5s;
   }
-  
   &:hover {
     color: ${({ theme }) => theme.white};
-    background: ${({ theme }) => theme.primary};
-    transform: translateY(-3px);
+    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.accent});
+    transform: translateY(-3px) scale(1.08);
     box-shadow: 0 4px 12px ${({ theme }) => theme.primary + 40};
-    
     &::before {
       left: 100%;
     }
   }
-  
   svg {
     font-size: 1.2rem;
   }
@@ -184,7 +181,6 @@ function Footer() {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
@@ -193,7 +189,13 @@ function Footer() {
   };
 
   return (
-    <FooterContainer>
+    <FooterContainer
+      as={motion.div}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
       <FooterWrapper>
         <Logo>Vivek Chaurasia</Logo>
         <Nav>

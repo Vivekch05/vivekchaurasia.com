@@ -19,6 +19,12 @@ import { DiCssdeck } from 'react-icons/di';
 import { FaBars, FaTimes, FaGithub } from 'react-icons/fa';
 import { Bio } from '../../data/constants';
 import { useTheme } from 'styled-components';
+import { motion } from 'framer-motion';
+
+const navVariants = {
+  hidden: { opacity: 0, y: -40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.8, 0.25, 1] } }
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,12 +78,19 @@ const Navbar = () => {
   ];
 
   return (
-    <Nav style={{
-      backgroundColor: scrolled ? `${theme.card_light}99` : theme.card_light,
-      backdropFilter: scrolled ? 'blur(10px)' : 'none',
-      boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.07)' : 'none',
-      transition: 'background 0.3s, box-shadow 0.3s'
-    }}>
+    <Nav
+      as={motion.div}
+      initial="hidden"
+      animate="visible"
+      variants={navVariants}
+      style={{
+        background: scrolled ? 'rgba(24,28,36,0.92)' : 'rgba(24,28,36,0.72)',
+        backdropFilter: 'blur(16px)',
+        boxShadow: scrolled ? '0 4px 24px 0 rgba(31,38,135,0.10)' : 'none',
+        borderBottom: '1.5px solid ' + theme.primary + '33',
+        transition: 'background 0.3s, box-shadow 0.3s, border 0.3s',
+      }}
+    >
       <NavbarContainer>
         <NavLogo to='/'>
           <a href="/" style={{
@@ -86,7 +99,11 @@ const Navbar = () => {
             color: "white",
             marginBottom: '20px',
             cursor: 'pointer',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            fontFamily: "'Merriweather', serif",
+            fontWeight: 700,
+            fontSize: '1.7rem',
+            letterSpacing: '0.02em',
           }}>
             <DiCssdeck size="3rem" />
             <Span>Portfolio</Span>
