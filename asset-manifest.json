@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/vivekchaurasia.com/static/css/main.b0ea5a33.css",
-    "main.js": "/vivekchaurasia.com/static/js/main.31cb57e7.js",
-    "static/media/hunger.png": "/vivekchaurasia.com/static/media/hunger.54649dd9555ca0db558d.png",
-    "static/media/Youtube.png": "/vivekchaurasia.com/static/media/Youtube.720ca192059c57b18f91.png",
-    "static/media/movie.png": "/vivekchaurasia.com/static/media/movie.0b44b6fec5dd3ce6cbaa.png",
-    "static/media/vibrantcv.png": "/vivekchaurasia.com/static/media/vibrantcv.264e80faff761e62042d.png",
-    "static/media/game.png": "/vivekchaurasia.com/static/media/game.fc89c83e498cace57f2d.png",
+    "main.css": "/vivekchaurasia.com/static/css/main.62a3ae39.css",
+    "main.js": "/vivekchaurasia.com/static/js/main.a339f4e7.js",
     "static/media/protfolio.png": "/vivekchaurasia.com/static/media/protfolio.0b5756a0f7b8622d9ec7.png",
     "static/media/flashcard.png": "/vivekchaurasia.com/static/media/flashcard.577d656d472273fcd778.png",
     "static/media/VivekImage1.jpg": "/vivekchaurasia.com/static/media/VivekImage1.9ce654a1e45830f8c9ac.jpg",
+    "static/media/hunger.png": "/vivekchaurasia.com/static/media/hunger.ca234601077d8ff0b280.png",
+    "static/media/movie.png": "/vivekchaurasia.com/static/media/movie.59ca90263c0a19fbb30a.png",
+    "static/media/Youtube.png": "/vivekchaurasia.com/static/media/Youtube.76a294cd2a5c0c73ddbe.png",
     "static/media/whatsapp.png": "/vivekchaurasia.com/static/media/whatsapp.eb791ce565457a46645b.png",
     "static/media/tripscanner.png": "/vivekchaurasia.com/static/media/tripscanner.f740a478860c2de61654.png",
+    "static/media/vibrantcv.png": "/vivekchaurasia.com/static/media/vibrantcv.526a17213d142b1b392a.png",
     "static/media/fileflow.png": "/vivekchaurasia.com/static/media/fileflow.343b2c3f85acbaa58b5f.png",
+    "static/media/game.png": "/vivekchaurasia.com/static/media/game.a27547fff5104bea7736.png",
     "index.html": "/vivekchaurasia.com/index.html",
-    "main.b0ea5a33.css.map": "/vivekchaurasia.com/static/css/main.b0ea5a33.css.map",
-    "main.31cb57e7.js.map": "/vivekchaurasia.com/static/js/main.31cb57e7.js.map"
+    "main.62a3ae39.css.map": "/vivekchaurasia.com/static/css/main.62a3ae39.css.map",
+    "main.a339f4e7.js.map": "/vivekchaurasia.com/static/js/main.a339f4e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.b0ea5a33.css",
-    "static/js/main.31cb57e7.js"
+    "static/css/main.62a3ae39.css",
+    "static/js/main.a339f4e7.js"
   ]
 }
