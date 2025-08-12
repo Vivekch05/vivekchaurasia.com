@@ -19,7 +19,7 @@ export const Bio = {
     "Programmer",
   ],
   description:
-    "I am a proactive and adaptable professional with a strong commitment to continuous learning and delivering high-quality outcomes. With a positive attitude and a growth-oriented mindset, I approach challenges as opportunities for improvement and innovation. I am dedicated to making meaningful contributions and driving success within any team or organization.",
+    "I'm a dedicated professional committed to continuous learning and achieving excellent outcomes. I tackle challenges with a positive, growth-oriented mindset, always looking for ways to innovate and improve. I'm eager to make a strong impact wherever I go.",
   github: "https://github.com/Vivekch05",
   resume:
     "https://drive.google.com/file/d/199539VMV4gJemy5_0gcPXTrme16Y261z/view?usp=sharing",
@@ -42,36 +42,12 @@ export const skills = [
         image: "https://cdn.worldvectorlogo.com/logos/next-js.svg"
       },
       {
-        name: "Redux",
-        image: "https://cdn.worldvectorlogo.com/logos/redux.svg"
-      },
-      {
-        name: "Recoil",
-        image: "https://cdn.worldvectorlogo.com/logos/recoil.svg"
-      },
-      {
-        name: "JavaScript",
+        name: "JavaScript (ES6+)",
         image: "https://cdn.worldvectorlogo.com/logos/javascript-1.svg"
       },
       {
-        name: "Styled Components",
-        image: "https://cdn.worldvectorlogo.com/logos/styled-components-1.svg"
-      },
-      {
-        name: "GraphQL",
-        image: "https://cdn.worldvectorlogo.com/logos/graphql.svg"
-      },
-      {
-        name: "Apollo Client",
-        image: "https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg"
-      },
-      {
-        name: "API Integrations",
-        image: "https://cdn.worldvectorlogo.com/logos/api.svg"
-      },
-      {
-        name: "Socket",
-        image: "https://cdn.worldvectorlogo.com/logos/socket-io.svg"
+        name: "TypeScript",
+        image: "https://cdn.worldvectorlogo.com/logos/typescript.svg"
       },
       {
         name: "HTML5",
@@ -82,25 +58,61 @@ export const skills = [
         image: "https://cdn.worldvectorlogo.com/logos/css-5.svg"
       },
       {
-        name: "Tailwind",
-        image: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg"
+        name: "Redux",
+        image: "https://cdn.worldvectorlogo.com/logos/redux.svg"
       },
       {
-        name: "Bootstrap",
-        image: "https://cdn.worldvectorlogo.com/logos/bootstrap-5-1.svg"
+        name: "Styled-components",
+        image: "https://cdn.worldvectorlogo.com/logos/styled-components-1.svg"
+      },
+      {
+        name: "Tailwind CSS",
+        image: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg"
       },
       {
         name: "Material UI",
         image: "https://cdn.worldvectorlogo.com/logos/material-ui-1.svg"
       },
       {
-        name: "AntD",
-        image: "https://cdn.worldvectorlogo.com/logos/ant-design-1.svg"
+        name: "Chakra UI",
+        image: "https://cdn.worldvectorlogo.com/logos/chakra-ui-logo.svg"
       },
       {
-        name: "JSON Server",
-        image: "https://cdn.worldvectorlogo.com/logos/json-5.svg"
-      }
+        name: "Responsive Design",
+        image: "https://cdn.worldvectorlogo.com/logos/responsive.svg"
+      },
+      {
+        name: "Accessibility (a11y)",
+        image: "https://cdn.worldvectorlogo.com/logos/accessibility.svg"
+      },
+      {
+        name: "Figma",
+        image: "https://cdn.worldvectorlogo.com/logos/figma-1.svg"
+      },
+      {
+        name: "Adobe XD",
+        image: "https://cdn.worldvectorlogo.com/logos/adobe-xd.svg"
+      },
+      {
+        name: "REST APIs",
+        image: "https://cdn.worldvectorlogo.com/logos/api.svg"
+      },
+      {
+        name: "GraphQL",
+        image: "https://cdn.worldvectorlogo.com/logos/graphql.svg"
+      },
+      {
+        name: "Webpack",
+        image: "https://cdn.worldvectorlogo.com/logos/webpack.svg"
+      },
+      {
+        name: "Vite",
+        image: "https://cdn.worldvectorlogo.com/logos/vitejs.svg"
+      },
+      {
+        name: "Babel",
+        image: "https://cdn.worldvectorlogo.com/logos/babel.svg"
+      },
     ]
   },
 
@@ -108,15 +120,15 @@ export const skills = [
     title: "Tools & Technologies",
     skills: [
       {
-        name: "Visual Studio",
-        image: "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg"
-      },
-      {
         name: "Git",
         image: "https://cdn.worldvectorlogo.com/logos/git-icon.svg"
       },
       {
-        name: "GitLens",
+        name: "GitHub",
+        image: "https://cdn.worldvectorlogo.com/logos/github-icon.svg"
+      },
+      {
+        name: "GitLab",
         image: "https://cdn.worldvectorlogo.com/logos/gitlab.svg"
       },
       {
@@ -124,29 +136,71 @@ export const skills = [
         image: "https://cdn.worldvectorlogo.com/logos/bitbucket.svg"
       },
       {
-        name: "Swagger",
-        image: "https://cdn.worldvectorlogo.com/logos/swagger.svg"
+        name: "VS Code",
+        image: "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg"
+      },
+      {
+        name: "NPM",
+        image: "https://cdn.worldvectorlogo.com/logos/npm.svg"
+      },
+      {
+        name: "Yarn",
+        image: "https://cdn.worldvectorlogo.com/logos/yarn.svg"
+      },
+      {
+        name: "Chrome DevTools",
+        image: "https://cdn.worldvectorlogo.com/logos/chrome-devtools.svg"
       },
       {
         name: "Postman",
         image: "https://cdn.worldvectorlogo.com/logos/postman.svg"
       },
       {
-        name: "Jenkins",
-        image: "https://cdn.worldvectorlogo.com/logos/jenkins-1.svg"
+        name: "Docker",
+        image: "https://cdn.worldvectorlogo.com/logos/docker.svg"
       },
       {
-        name: "Sonar",
-        image: "https://cdn.worldvectorlogo.com/logos/sonarqube-1.svg"
+        name: "CI/CD",
+        image: "https://cdn.worldvectorlogo.com/logos/ci-cd.svg"
       },
       {
-        name: "JIRA",
+        name: "Firebase",
+        image: "https://cdn.worldvectorlogo.com/logos/firebase.svg"
+      },
+      
+      {
+        name: "AWS",
+        image: "https://cdn.worldvectorlogo.com/logos/amazon-aws.svg"
+      },
+      {
+        name: "Azure",
+        image: "https://cdn.worldvectorlogo.com/logos/microsoft-azure.svg"
+      },
+      
+      {
+        name: "LogRocket",
+        image: "https://cdn.worldvectorlogo.com/logos/logrocket.svg"
+      },
+      {
+        name: "Jira",
         image: "https://cdn.worldvectorlogo.com/logos/jira-1.svg"
       },
       {
-        name: "Figma",
-        image: "https://cdn.worldvectorlogo.com/logos/figma-1.svg"
-      }
+        name: "Trello",
+        image: "https://cdn.worldvectorlogo.com/logos/trello.svg"
+      },
+      {
+        name: "Notion",
+        image: "https://cdn.worldvectorlogo.com/logos/notion.svg"
+      },
+      {
+        name: "Slack",
+        image: "https://cdn.worldvectorlogo.com/logos/slack.svg"
+      },
+      {
+        name: "Discord",
+        image: "https://cdn.worldvectorlogo.com/logos/discord.svg"
+      },
     ]
   }, {
     title: "Testing & Quality",
@@ -156,19 +210,47 @@ export const skills = [
         image: "https://cdn.worldvectorlogo.com/logos/jest.svg"
       },
       {
-        name: "Enzyme",
-        image: "https://cdn.worldvectorlogo.com/logos/enzyme.svg"
-      },
-      {
         name: "React Testing Library",
         image: "https://cdn.worldvectorlogo.com/logos/react-2.svg"
       },
       {
-        name: "NVDA",
-        image: "https://cdn.worldvectorlogo.com/logos/nvda.svg"
-      }
+        name: "Storybook",
+        image: "https://cdn.worldvectorlogo.com/logos/storybook.svg"
+      },
+      {
+        name: "ESLint",
+        image: "https://cdn.worldvectorlogo.com/logos/eslint.svg"
+      },
+      {
+        name: "Prettier",
+        image: "https://cdn.worldvectorlogo.com/logos/prettier.svg"
+      },
+      {
+        name: "Lighthouse",
+        image: "https://cdn.worldvectorlogo.com/logos/lighthouse.svg"
+      },
+      {
+        name: "Unit Testing",
+        image: "https://cdn.worldvectorlogo.com/logos/unit-testing.svg"
+      },
+      {
+        name: "Integration Testing",
+        image: "https://cdn.worldvectorlogo.com/logos/integration-testing.svg"
+      },
+      {
+        name: "Manual Testing",
+        image: "https://cdn.worldvectorlogo.com/logos/manual-testing.svg"
+      },
+      {
+        name: "Code Review",
+        image: "https://cdn.worldvectorlogo.com/logos/code-review.svg"
+      },
+      {
+        name: "Test-Driven Development",
+        image: "https://cdn.worldvectorlogo.com/logos/test-driven-development.svg"
+      },
     ]
-  },
+  }
 ];
 
 export const experiences = [

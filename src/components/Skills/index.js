@@ -138,7 +138,7 @@ const Skill = styled.div`
     transform: translateX(-100%);
     transition: transform 0.6s ease-in-out;
   }
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -188,7 +188,17 @@ const SkillList = styled.div`
   margin-bottom: 20px;
 `
 
+const SkillRow = styled.div`
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 8px;
+`;
+
 const SkillItem = styled.div`
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.text_primary};
@@ -203,6 +213,7 @@ const SkillItem = styled.div`
   transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
   
   &::before {
     content: '';
@@ -253,6 +264,19 @@ const SkillImage = styled.img`
   }
 `
 
+function groupSkillsByRow(skills) {
+  const threshold = 14;
+  const shortSkills = skills.filter(s => s.name.length <= threshold);
+  const longSkills = skills.filter(s => s.name.length > threshold);
+  const orderedSkills = [...shortSkills, ...longSkills];
+
+  const rows = [];
+  for (let i = 0; i < orderedSkills.length; i += 2) {
+    rows.push(orderedSkills.slice(i, i + 2));
+  }
+  return rows;
+}
+
 const Skills = () => {
   return (
     <Container id="skills">
@@ -266,12 +290,26 @@ const Skills = () => {
             <Skill key={index}>
               <SkillTitle>{skill.title}</SkillTitle>
               <SkillList>
-                {skill.skills.map((item, index) => (
-                  <SkillItem key={index}>
-                    <SkillImage src={item.image} alt={item.name}/>
-                    {item.name}
-                  </SkillItem>
-                ))}
+                {["Frontend Development", "Tools & Technologies", "Testing & Quality"].includes(skill.title)
+                  ? groupSkillsByRow(skill.skills).map((row, rowIdx) => (
+                      <SkillRow key={rowIdx}>
+                        {row.map((item, idx) => (
+                          <SkillItem key={item.name}>
+                            <SkillImage src={item.image} alt={item.name}/>
+                            {item.name}
+                          </SkillItem>
+                        ))}
+                        {/* If only one skill in the row, add an empty SkillItem for alignment */}
+                        {row.length === 1 && <SkillItem style={{ visibility: 'hidden' }} />}
+                      </SkillRow>
+                    ))
+                  : skill.skills.map((item, idx) => (
+                      <SkillItem key={item.name}>
+                        <SkillImage src={item.image} alt={item.name}/>
+                        {item.name}
+                      </SkillItem>
+                    ))
+                }
               </SkillList>
             </Skill>
           ))}
