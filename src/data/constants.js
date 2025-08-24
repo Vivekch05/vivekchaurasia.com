@@ -1,14 +1,3 @@
-import hungerImg from '../images/hunger.png';
-import movieImg from '../images/movie.png';
-import gameImg from '../images/game.png';
-import portfolioImg from '../images/protfolio.png';
-import youtubeImg from '../images/Youtube.png';
-import whatsapp from '../images/whatsapp.png';
-import fileflow from '../images/fileflow.png';
-import flashcard from '../images/flashcard.png';
-import tripscanner from '../images/tripscanner.png';
-import vibrantcv from '../images/vibrantcv.png';
-
 export const Bio = {
   name: "Vivek Chaurasia",
   roles: [
@@ -363,7 +352,7 @@ export const projects = [
     title: "VibrantCV",
     date: "August 2025",
     description: "VibrantCV is a modern resume builder web application that helps users create professional and visually appealing resumes. Users can choose from multiple templates, customize colors and layouts, and export their resumes in various formats. The app features a drag-and-drop interface, real-time preview, and AI-powered suggestions for content optimization. Built with React and Tailwind CSS, VibrantCV makes resume creation simple and effective.",
-    image: vibrantcv,
+    image: "/images/vibrantcv.png",
     tags: [
       "React JS",
       "Tailwind",
@@ -381,7 +370,7 @@ export const projects = [
     title: "Trip Scanner",
     date: "July 2025",
     description: "Trip Scanner is a travel planning web application that helps users discover, organize, and optimize their trips. Users can search for destinations, view attractions, create itineraries, and get personalized recommendations based on their interests. The app features an interactive map, real-time weather updates, and collaborative trip planning for groups. Built with React and modern UI libraries, Trip Scanner makes travel planning seamless and enjoyable.",
-    image: tripscanner,
+    image: "/images/tripscanner.png",
     tags: [
       "React JS",
       "JavaScript",
@@ -398,7 +387,7 @@ export const projects = [
     title: "Hunger",
     date: "May 2025 - Present",
     description: "Hunger is a frontend web application that mimics the core features of Swiggy, offering a simple and intuitive food ordering experience. Users can browse a list of restaurants, view their menus, add items to a shopping cart, and proceed to a checkout page to review their order. The app also includes an About page and a Contact Us page to provide additional context and support. This project highlights key frontend development skills such as component-based design, routing, and basic state management, all wrapped in a clean and responsive UI.",
-    image: hungerImg,
+    image: "/images/hunger.png",
     tags: ["React Js", "Redux", "JavaScript", "Tailwind", "HTML", "CSS", "Jest", "React Testing Library"],
     category: "web app",
     github: "https://github.com/Vivekch05/Hunger",
@@ -409,7 +398,7 @@ export const projects = [
     title: "FileFlow Studio",
     date: "July 2025",
     description: "FileFlow Studio is an easy-to-use online tool for managing and sharing your files. You can quickly upload, organize, and share documents securely using simple drag-and-drop. It lets you see your files instantly and share them with custom links. It's built with modern tech (React and Tailwind CSS) to look good and work well on any device, always keeping your data safe and private.",
-    image: fileflow,
+    image: "/images/fileflow.png",
     tags: [
       "React JS",
       "Tailwind",
@@ -427,7 +416,7 @@ export const projects = [
     title: "Flashcard Generator",
     date: "July 2025",
     description: "Flashcard Generator is a web application that allows users to easily create, customize, and study digital flashcards. Users can add questions and answers, organize flashcards into decks, and review them using an interactive study mode. The app is designed for students and lifelong learners, providing a simple and effective way to memorize information. Built with React and Tailwind CSS, it offers a clean, responsive interface and supports saving decks for future sessions.",
-    image: flashcard,// Replace with your own image if available
+    image: "/images/flashcard.png",
     tags: [
       "React JS",
       "Tailwind",
@@ -444,7 +433,7 @@ export const projects = [
     title: "Movie-Series App",
     date: "Oct 2022 - Oct 2022",
     description: "MovieSeriesInfo is a web application that lets users search for any movie and view detailed information, including the IMDb rating. The app features three main sections: a trending movies section showcasing popular titles, a category section with filters for Action, Comedy, Drama, Sci-Fi, Horror, Romance, Thriller, and Animation, and a search bar to look up specific movies. It provides a clean and intuitive interface for exploring and discovering movies across different genres.",
-    image: movieImg,
+    image: "/images/movie.png",
     tags: [
       "React Js",
       "JavaScript",
@@ -462,69 +451,73 @@ export const projects = [
     title: "Tetris Game",
     date: "Jan 2023 - Jan 2023",
     description: "This is a web-based Tetris game where users can start the game using a start button and control the falling blocks using the arrow keys. Players can move the blocks left, right, and down, and rotate them using the up arrow key. The game tracks the player's score and level as they progress, and displays a Game Over message when the blocks stack up. It offers a smooth and responsive experience, bringing the classic Tetris gameplay to the browser.",
-    image: gameImg,
+    image: "/images/game.png",
     tags: [
       "React Js",
       "JavaScript",
       "HTML",
       "CSS",
       "styled-components",
+      "Redux"
     ],
     category: "web app",
-    github: "https://github.com/Vivech05/Brain-Tumor-Detection",
-    webapp: "https://vivekch05.github.io/Tetris-Game/",
+    github: "https://github.com/Vivekch05/tetris-game",
+    webapp: "https://Vivekch05.github.io/tetris-game",
   },
   {
     id: 7,
-    title: "Youtube Clone",
+    title: "YouTube Clone",
     date: "June 2025 - Present",
     description: "This YouTube Clone is a front-end web application built using React.js, HTML, CSS, JavaScript, and Tailwind CSS. It replicates the basic UI and functionality of YouTube. The app includes a Home, Subscription, and Trending section, along with a responsive search bar, profile icon, and notification icon in the header. The design is clean and modern, thanks to Tailwind CSS, and React ensures smooth component-based structure and dynamic rendering.",
-    image: youtubeImg,
+    image: "/images/Youtube.png",
     tags: [
       "React Js",
       "JavaScript",
       "HTML",
       "CSS",
-      "Tailwind CSS",
+      "Tailwind",
+      "Redux"
     ],
     category: "web app",
     github: "https://github.com/Vivekch05/youtube-clone",
-    webapp: "https://vivekch05.github.io/youtube-clone/",
+    webapp: "https://Vivekch05.github.io/youtube-clone",
   },
   {
     id: 8,
-    title: "Portfolio",
+    title: "Portfolio Website",
     date: "Jul 2024",
     description: "This is a personal portfolio website designed to showcase my professional background and online presence. It includes an About section introducing who I am, a Skills section highlighting my technical abilities, an Education section detailing my academic background, and an Experience section outlining my work history. The site also features a Contact section for direct communication, along with links to all my active social media profiles for easy networking and connection.",
-    image: portfolioImg,
+    image: "/images/protfolio.png",
     tags: [
       "Redux",
       "JavaScript",
       "HTML",
       "CSS",
       "styled-components",
+      "React"
     ],
     category: "web app",
-    github: "https://github.com/Vivekch05/vivekchaurasia.com",
-    webapp: "https://Vivekch05.github.io/vivekchaurasia.com/",
+    github: "https://github.com/Vivekch05/portfolio",
+    webapp: "https://Vivekch05.github.io/portfolio",
   },
   {
     id: 9,
-    title: "Whatsapp Clone",
+    title: "WhatsApp Clone",
     date: "June 2025",
-    description: "This WhatsApp Clone is a front-end web application built using React.js, JavaScript, HTML, and CSS. It features an Edit Profile section for updating user information and a sidebar displaying all users with their profile icons. When a user clicks on a contact in the sidebar, a chat page opens, showing the conversation with that user. The app mimics WhatsApp’s clean and intuitive UI, providing a smooth and responsive user experience.",
-    image: whatsapp,
+    description: "This WhatsApp Clone is a front-end web application built using React.js, JavaScript, HTML, and CSS. It features an Edit Profile section for updating user information and a sidebar displaying all users with their profile icons. When a user clicks on a contact in the sidebar, a chat page opens, showing the conversation with that user. The app mimics WhatsApp's clean and intuitive UI, providing a smooth and responsive user experience.",
+    image: "/images/whatsapp.png",
     tags: [
       "React JS",
       "JavaScript",
       "HTML",
       "CSS",
+      "styled-components",
+      "Redux"
     ],
     category: "web app",
     github: "https://github.com/Vivekch05/whatsapp-clone",
     webapp: "https://Vivekch05.github.io/whatsapp-clone",
   },
-
 ];
 
 export const TimeLineData = [

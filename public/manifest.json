@@ -4,17 +4,17 @@
   "description": "Portfolio website of Vivek Chaurasia - Frontend Developer and UI/UX Designer specializing in React, Next.js, and modern web technologies",
   "icons": [
     {
-      "src": "VivekImage.jpg",
+      "src": "images/VivekImage1.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/jpeg"
     },
     {
-      "src": "VivekImage.jpg",
+      "src": "images/VivekImage1.jpg",
       "type": "image/jpeg",
       "sizes": "192x192"
     },
     {
-      "src": "VivekImage.jpg",
+      "src": "images/VivekImage1.jpg",
       "type": "image/jpeg",
       "sizes": "512x512"
     }

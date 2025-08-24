@@ -1,7 +1,6 @@
 import React from 'react'
 import HeroBgAnimation from '../HeroBgAnimation'
 import { HeroContainer, HeroBg, HeroLeftContainer, Img, HeroRightContainer, HeroInnerContainer, TextLoop, Title, Span, SubTitle, ResumeButton } from './HeroStyle'
-import VivekImg from '../../images/VivekImage1.jpg'
 import Typewriter from 'typewriter-effect';
 import { Bio } from '../../data/constants';
 
@@ -55,7 +54,7 @@ const HeroSection = () => {
 
                     <HeroRightContainer id="Right">
                         <Img 
-                            src={VivekImg} 
+                            src="/images/VivekImage1.jpg" 
                             alt="Vivek Chaurasia - Frontend Developer" 
                             loading="eager"
                         />
