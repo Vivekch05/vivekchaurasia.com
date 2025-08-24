@@ -12,11 +12,32 @@ import { experiences } from '../../data/constants';
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+`;
+
+const float = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+const glow = keyframes`
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); 
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); 
   }
 `;
 
@@ -27,11 +48,32 @@ const Container = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
-    padding: 40px 0px 80px 0px;
-    background: linear-gradient(180deg, ${({ theme }) => theme.card_light} 0%, ${({ theme }) => theme.card_light}99 100%);
+    padding: 100px 0;
+    background: linear-gradient(180deg, 
+      ${({ theme }) => theme.card_light} 0%, 
+      ${({ theme }) => theme.card_light}99 50%,
+      ${({ theme }) => theme.card_light}95 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
     @media (max-width: 960px) {
-        padding: 0px;
+        padding: 80px 0;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 60px 0;
     }
 `;
 
@@ -42,54 +84,58 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
-    max-width: 1350px;
-    padding: 80px 0;
-    gap: 12px;
+    max-width: 1200px;
+    padding: 0 20px;
+    gap: 20px;
+    
     @media (max-width: 960px) {
         flex-direction: column;
     }
 `;
 
 const Title = styled.div`
-    font-size: 42px;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     text-align: center;
-    font-weight: 700;
+    font-weight: 800;
     margin-top: 20px;
     color: ${({ theme }) => theme.text_primary};
-    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+    background: ${({ theme }) => theme.primaryGradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: ${fadeIn} 0.8s ease-out;
+    letter-spacing: -0.02em;
     
     @media (max-width: 768px) {
         margin-top: 12px;
-        font-size: 32px;
+        font-size: clamp(2rem, 8vw, 2.5rem);
     }
 `;
 
 const Desc = styled.div`
-    font-size: 18px;
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     color: ${({ theme }) => theme.text_secondary};
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
+    line-height: 1.6;
     
     @media (max-width: 768px) {
-        margin-top: 12px;
-        font-size: 16px;
+        font-size: clamp(1rem, 4vw, 1.1rem);
+        margin-bottom: 30px;
     }
 `;
 
 const TimelineSection = styled.div`
     width: 100%;
     max-width: 1000px;
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
     animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
 `;
 
@@ -101,40 +147,63 @@ const StyledTimeline = styled(Timeline)`
     }
     
     .MuiTimelineDot-root {
-        background: ${({ theme }) => theme.primary};
+        background: ${({ theme }) => theme.primaryGradient};
         border: none;
-        box-shadow: 0 0 10px ${({ theme }) => theme.primary}40;
-        transition: all 0.3s ease-in-out;
+        box-shadow: ${({ theme }) => theme.shadow};
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: ${float} 6s ease-in-out infinite;
         
         &:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px ${({ theme }) => theme.primary}60;
+            transform: scale(1.3);
+            box-shadow: ${({ theme }) => theme.shadowHover};
+            animation: ${glow} 2s ease-in-out infinite;
         }
     }
     
     .MuiTimelineConnector-root {
-        background: linear-gradient(180deg, ${({ theme }) => theme.primary} 0%, ${({ theme }) => theme.primary}40 100%);
+        background: linear-gradient(180deg, 
+          ${({ theme }) => theme.primary} 0%, 
+          ${({ theme }) => theme.primary}60 50%,
+          ${({ theme }) => theme.primary}30 100%);
+        width: 3px;
+        border-radius: 2px;
+        box-shadow: 0 0 10px ${({ theme }) => theme.primary}30;
+    }
+    
+    .MuiTimelineContent-root {
+        padding: 16px 24px;
+        
+        @media (max-width: 768px) {
+            padding: 12px 16px;
+        }
     }
 `;
 
-const index = () => {
+const Experience = () => {
     return (
         <Container id="experience">
             <Wrapper>
-                <Title>Experience</Title>
+                <Title>Professional Experience</Title>
                 <Desc>
-                    My work experience as a software engineer and working on different companies and projects.
+                    My journey as a software engineer, working with innovative companies and contributing to exciting projects that have shaped my expertise and passion for technology.
                 </Desc>
                 <TimelineSection>
                     <StyledTimeline>
                         {experiences.map((experience, index) => (
                             <TimelineItem key={index}>
                                 <TimelineSeparator>
-                                    <TimelineDot variant="outlined" color="secondary" />
+                                    <TimelineDot 
+                                        variant="filled" 
+                                        sx={{ 
+                                            width: 16, 
+                                            height: 16,
+                                            animationDelay: `${index * 0.2}s`
+                                        }} 
+                                    />
                                     {index !== experiences.length - 1 && <TimelineConnector />}
                                 </TimelineSeparator>
-                                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                                    <ExperienceCard experience={experience}/>
+                                <TimelineContent>
+                                    <ExperienceCard experience={experience} index={index}/>
                                 </TimelineContent>
                             </TimelineItem>
                         ))}
@@ -145,4 +214,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Experience

@@ -8,7 +8,7 @@ import { Bio } from '../../data/constants';
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -28,13 +28,39 @@ const float = keyframes`
   }
 `;
 
+const glow = keyframes`
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); 
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); 
+  }
+`;
+
 const FooterContainer = styled.div`
   width: 100%;
-  padding: 2rem 0;
+  padding: 3rem 0;
   display: flex;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(132, 59, 206, 0.05) 0%, rgba(132, 59, 206, 0) 100%);
-  border-top: 1px solid ${({ theme }) => theme.primary + 20};
+  background: linear-gradient(180deg, 
+    rgba(99, 102, 241, 0.05) 0%, 
+    rgba(139, 92, 246, 0.03) 50%,
+    rgba(236, 72, 153, 0.02) 100%);
+  border-top: 1px solid ${({ theme }) => theme.glassHover};
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
 `;
 
 const FooterWrapper = styled.footer`
@@ -42,31 +68,35 @@ const FooterWrapper = styled.footer`
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   color: ${({ theme }) => theme.text_primary};
   animation: ${fadeIn} 0.8s ease-out;
+  position: relative;
+  z-index: 1;
 `;
 
 const Logo = styled.h1`
-  font-weight: 700;
-  font-size: 24px;
-  background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  background: ${({ theme }) => theme.primaryGradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 1rem;
   position: relative;
+  letter-spacing: -0.02em;
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, transparent);
+    background: ${({ theme }) => theme.primaryGradient};
     border-radius: 2px;
   }
 `;
@@ -82,49 +112,70 @@ const Nav = styled.nav`
   
   @media (max-width: 768px) {
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     text-align: center;
-    font-size: 12px;
   }
 `;
 
 const NavLink = styled.a`
   color: ${({ theme }) => theme.text_primary};
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.primaryGradient};
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
   
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 2px;
-    background: ${({ theme }) => theme.primary};
-    transition: width 0.3s ease;
+    background: ${({ theme }) => theme.primaryGradient};
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
   }
   
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.white};
+    transform: translateY(-2px);
+    
+    &::before {
+      opacity: 1;
+    }
     
     &::after {
-      width: 100%;
+      width: 80%;
     }
   }
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
   }
 `;
 
 const SocialMediaIcons = styled.div`
   display: flex;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   gap: 1.5rem;
 `;
 
@@ -132,14 +183,18 @@ const SocialMediaIcon = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.card_light};
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.glass};
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: ${({ theme }) => theme.text_primary};
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.glassHover};
+  box-shadow: ${({ theme }) => theme.shadow};
   
   &::before {
     content: '';
@@ -154,9 +209,10 @@ const SocialMediaIcon = styled.a`
   
   &:hover {
     color: ${({ theme }) => theme.white};
-    background: ${({ theme }) => theme.primary};
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px ${({ theme }) => theme.primary + 40};
+    background: ${({ theme }) => theme.primaryGradient};
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: ${({ theme }) => theme.shadowHover};
+    animation: ${glow} 2s ease-in-out infinite;
     
     &::before {
       left: 100%;
@@ -164,16 +220,17 @@ const SocialMediaIcon = styled.a`
   }
   
   svg {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 `;
 
 const Copyright = styled.p`
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   font-size: 0.9rem;
   color: ${({ theme }) => theme.text_secondary};
   text-align: center;
-  animation: ${float} 3s ease-in-out infinite;
+  animation: ${float} 4s ease-in-out infinite;
+  font-weight: 500;
 `;
 
 function Footer() {
@@ -239,7 +296,7 @@ function Footer() {
           </SocialMediaIcon>
         </SocialMediaIcons>
         <Copyright>
-          &copy; {new Date().getFullYear()} Vivek Chaurasia. All rights reserved.
+          &copy; {new Date().getFullYear()} Vivek Chaurasia. All rights reserved. | Crafted with ❤️
         </Copyright>
       </FooterWrapper>
     </FooterContainer>

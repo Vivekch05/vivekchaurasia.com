@@ -15,7 +15,18 @@ const HeroSection = () => {
                 <HeroInnerContainer>
                     <HeroLeftContainer id="Left">
                         <Title>
-                            <span style={{ display: 'block', fontSize: '0.8em', marginBottom: '10px' }}>👋 Hello, I'm</span>
+                            <span style={{ 
+                                display: 'block', 
+                                fontSize: '0.9em', 
+                                marginBottom: '12px',
+                                background: 'linear-gradient(135deg, #10b981, #6366f1)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                fontWeight: '600'
+                            }}>
+                                👋 Hello, I'm
+                            </span>
                             {Bio.name}
                         </Title>
                         <TextLoop>
@@ -38,14 +49,14 @@ const HeroSection = () => {
                             target='_blank'
                             rel="noopener noreferrer"
                         >
-                            View Resume
+                            📄 View Resume
                         </ResumeButton>
                     </HeroLeftContainer>
 
                     <HeroRightContainer id="Right">
                         <Img 
                             src={VivekImg} 
-                            alt="hero-image" 
+                            alt="Vivek Chaurasia - Frontend Developer" 
                             loading="eager"
                         />
                     </HeroRightContainer>

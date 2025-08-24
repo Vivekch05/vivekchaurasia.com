@@ -5,7 +5,7 @@ import { skills } from '../../data/constants'
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -18,19 +18,19 @@ const float = keyframes`
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   100% {
     transform: translateY(0px);
   }
 `;
 
-const shimmer = keyframes`
-  0% {
-    background-position: -1000px 0;
+const glow = keyframes`
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); 
   }
-  100% {
-    background-position: 1000px 0;
+  50% { 
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); 
   }
 `;
 
@@ -41,9 +41,25 @@ const Container = styled.div`
   position: relative;
   z-index: 1;
   align-items: center;
-  padding: 80px 0;
-  background: linear-gradient(180deg, ${({ theme }) => theme.card_light} 0%, ${({ theme }) => theme.card_light}99 100%);
+  padding: 100px 0;
+  background: linear-gradient(180deg, 
+    ${({ theme }) => theme.card_light} 0%, 
+    ${({ theme }) => theme.card_light}99 50%,
+    ${({ theme }) => theme.card_light}95 100%);
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
 `
 
 const Wrapper = styled.div`
@@ -53,8 +69,8 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  max-width: 1100px;
-  gap: 12px;
+  max-width: 1200px;
+  gap: 20px;
   padding: 0 20px;
   @media (max-width: 960px) {
     flex-direction: column;
@@ -62,65 +78,73 @@ const Wrapper = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 42px;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   text-align: center;
-  font-weight: 700;
+  font-weight: 800;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
-  background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+  background: ${({ theme }) => theme.primaryGradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: ${fadeIn} 0.8s ease-out;
+  letter-spacing: -0.02em;
   
   @media (max-width: 768px) {
     margin-top: 12px;
-    font-size: 32px;
+    font-size: clamp(2rem, 8vw, 2.5rem);
   }
 `;
 
 export const Desc = styled.div`
-  font-size: 18px;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   color: ${({ theme }) => theme.text_secondary};
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
+  line-height: 1.6;
   
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    margin-bottom: 30px;
   }
 `;
 
 const SkillsContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
   justify-items: center;
   align-items: stretch;
-  margin-top: 30px;
+  margin-top: 40px;
   animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
+  
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
   }
+  
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 24px;
+    margin-top: 30px;
   }
 `
 
 const Skill = styled.div`
   width: 100%;
-  max-width: 320px;
+  max-width: 380px;
   background: ${({ theme }) => theme.card};
-  border: 1px solid ${({ theme }) => theme.primary}40;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  padding: 24px 28px;
-  transition: all 0.3s ease-in-out;
+  border: 1px solid ${({ theme }) => theme.glassHover};
+  box-shadow: ${({ theme }) => theme.shadow};
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  animation: ${float} 6s ease-in-out infinite;
   
   &::before {
     content: '';
@@ -129,53 +153,52 @@ const Skill = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      ${({ theme }) => theme.primary}10,
-      transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease-in-out;
+    background: ${({ theme }) => theme.primaryGradient};
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
   }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border-color: ${({ theme }) => theme.primary}80;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: ${({ theme }) => theme.shadowHover};
+    border-color: ${({ theme }) => theme.primary}40;
+    animation: ${glow} 2s ease-in-out infinite;
     
     &::before {
-      transform: translateX(100%);
+      opacity: 0.05;
     }
   }
   
   @media (max-width: 768px) {
     max-width: 400px;
-    padding: 20px 24px;
+    padding: 28px 24px;
   }
+  
   @media (max-width: 500px) {
-    max-width: 330px;
-    padding: 16px 20px;
+    max-width: 350px;
+    padding: 24px 20px;
   }
 `
 
 const SkillTitle = styled.h2`
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.text_primary};
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   text-align: center;
   position: relative;
+  letter-spacing: -0.01em;
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
+    width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.primary}80);
+    background: ${({ theme }) => theme.primaryGradient};
     border-radius: 2px;
   }
 `
@@ -192,28 +215,29 @@ const SkillRow = styled.div`
   display: flex;
   gap: 16px;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 const SkillItem = styled.div`
   flex: 1 1 0;
   min-width: 0;
   max-width: 100%;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: ${({ theme }) => theme.text_primary};
   background: ${({ theme }) => theme.card_light};
-  border: 1px solid ${({ theme }) => theme.primary}40;
-  border-radius: 12px;
-  padding: 12px 16px;
+  border: 1px solid ${({ theme }) => theme.glassHover};
+  border-radius: 16px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.3s ease-in-out;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  box-shadow: ${({ theme }) => theme.shadow};
   
   &::before {
     content: '';
@@ -222,44 +246,42 @@ const SkillItem = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      ${({ theme }) => theme.primary}20,
-      transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease-in-out;
+    background: ${({ theme }) => theme.primaryGradient};
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
   }
   
   &:hover {
-    transform: translateY(-2px);
-    background: ${({ theme }) => theme.primary}10;
-    border-color: ${({ theme }) => theme.primary};
+    transform: translateY(-3px) scale(1.02);
+    background: ${({ theme }) => theme.cardHover};
+    border-color: ${({ theme }) => theme.primary}60;
+    box-shadow: ${({ theme }) => theme.shadowHover};
     
     &::before {
-      transform: translateX(100%);
+      opacity: 0.1;
     }
   }
   
   @media (max-width: 768px) {
-    font-size: 14px;
-    padding: 10px 14px;
+    font-size: 0.85rem;
+    padding: 12px 16px;
   }
+  
   @media (max-width: 500px) {
-    font-size: 14px;
-    padding: 8px 12px;
+    font-size: 0.8rem;
+    padding: 10px 14px;
   }
 `
 
 const SkillImage = styled.img`
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s ease-in-out;
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   
   ${SkillItem}:hover & {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.2) rotate(5deg);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
   }
 `
@@ -281,13 +303,14 @@ const Skills = () => {
   return (
     <Container id="skills">
       <Wrapper>
-        <Title>Skills</Title>
+        <Title>Skills & Technologies</Title>
         <Desc>
-          Here are some of my skills on which I have been working on for the past 5 years.
+          Here are the technologies and tools I've been working with for the past 5+ years, 
+          continuously expanding my expertise in modern web development.
         </Desc>
         <SkillsContainer>
           {skills.map((skill, index) => (
-            <Skill key={index}>
+            <Skill key={index} style={{ animationDelay: `${index * 0.2}s` }}>
               <SkillTitle>{skill.title}</SkillTitle>
               <SkillList>
                 {["Frontend Development", "Tools & Technologies", "Testing & Quality"].includes(skill.title)

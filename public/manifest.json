@@ -1,0 +1,30 @@
+{
+  "short_name": "Vivek Portfolio",
+  "name": "Vivek Chaurasia - Frontend Developer Portfolio",
+  "description": "Portfolio website of Vivek Chaurasia - Frontend Developer and UI/UX Designer specializing in React, Next.js, and modern web technologies",
+  "icons": [
+    {
+      "src": "VivekImage.jpg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "VivekImage.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "VivekImage.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6366f1",
+  "background_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

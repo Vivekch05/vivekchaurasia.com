@@ -7,7 +7,7 @@ import { Send, Email, Person, Subject, Message } from '@mui/icons-material';
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -15,12 +15,21 @@ const fadeIn = keyframes`
   }
 `;
 
-const shimmer = keyframes`
-  0% {
-    background-position: -200% 0;
+const float = keyframes`
+  0%, 100% {
+    transform: translateY(0px);
   }
-  100% {
-    background-position: 200% 0;
+  50% {
+    transform: translateY(-10px);
+  }
+`;
+
+const glow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
   }
 `;
 
@@ -31,11 +40,34 @@ const Container = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
-    padding: 40px 0;
-    background: linear-gradient(180deg, rgba(132, 59, 206, 0.05) 0%, rgba(132, 59, 206, 0) 100%);
+    padding: 100px 0;
+    background: linear-gradient(180deg, 
+      ${({ theme }) => theme.card_light} 0%, 
+      ${({ theme }) => theme.card_light}99 50%,
+      ${({ theme }) => theme.card_light}95 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
     
     @media (max-width: 960px) {
-        padding: 20px 0;
+        padding: 80px 0;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 60px 0;
     }
 `;
 
@@ -46,99 +78,117 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
-    max-width: 1350px;
-    padding: 0px 0px 80px 0px;
-    gap: 24px;
+    max-width: 1200px;
+    padding: 0 20px;
+    gap: 40px;
     
     @media (max-width: 960px) {
         flex-direction: column;
-        gap: 16px;
+        gap: 32px;
+    }
+    
+    @media (max-width: 768px) {
+        gap: 24px;
+        padding: 0 16px;
     }
 `;
 
 const Title = styled.div`
-    font-size: 42px;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     text-align: center;
-    font-weight: 700;
-    margin-top: 20px;
-    color: ${({ theme }) => theme.text_primary};
-    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+    font-weight: 800;
+    color: #1e293b;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: ${fadeIn} 0.8s ease-out;
     position: relative;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
     &::after {
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
-        width: 100px;
+        width: 120px;
         height: 4px;
-        background: linear-gradient(90deg, ${({ theme }) => theme.primary}, transparent);
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
         border-radius: 2px;
+        animation: ${glow} 3s ease-in-out infinite;
     }
     
     @media (max-width: 768px) {
-        margin-top: 12px;
-        font-size: 32px;
-        
         &::after {
-            width: 60px;
+            width: 80px;
             height: 3px;
         }
     }
 `;
 
 const Desc = styled.div`
-    font-size: 18px;
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
     text-align: center;
-    max-width: 600px;
-    color: ${({ theme }) => theme.text_secondary};
-    margin-bottom: 20px;
+    max-width: 700px;
+    color: #475569;
     animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 500;
     
     @media (max-width: 768px) {
-        margin-top: 12px;
-        font-size: 16px;
         padding: 0 20px;
     }
 `;
 
 const ContactForm = styled.form`
-    width: 95%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
-    background-color: ${({ theme }) => theme.card};
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-top: 28px;
-    gap: 16px;
+    background: ${({ theme }) => theme.card};
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: ${({ theme }) => theme.shadow};
+    gap: 24px;
     animation: ${fadeIn} 0.8s ease-out 0.4s backwards;
-    border: 1px solid ${({ theme }) => theme.primary + 20};
-    backdrop-filter: blur(10px);
+    border: 1px solid ${({ theme }) => theme.glassHover};
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+        box-shadow: ${({ theme }) => theme.shadowHover};
+        transform: translateY(-5px);
+    }
     
     @media (max-width: 768px) {
-        padding: 24px;
-        gap: 12px;
+        padding: 32px 24px;
+        gap: 20px;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 24px 20px;
+        gap: 16px;
     }
 `;
 
 const ContactTitle = styled.div`
-    font-size: 24px;
-    margin-bottom: 6px;
-    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    margin-bottom: 8px;
+    font-weight: 700;
     color: ${({ theme }) => theme.text_primary};
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    background: ${({ theme }) => theme.primaryGradient};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     
     svg {
         color: ${({ theme }) => theme.primary};
+        animation: ${float} 6s ease-in-out infinite;
     }
 `;
 
@@ -152,53 +202,81 @@ const InputIcon = styled.div`
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: ${({ theme }) => theme.text_secondary};
+    color: #6366f1;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
 `;
 
 const ContactInput = styled.input`
     width: 100%;
-    background-color: transparent;
-    border: 1px solid ${({ theme }) => theme.text_secondary};
+    background: ${({ theme }) => theme.card_light};
+    border: 2px solid ${({ theme }) => theme.glassHover};
     outline: none;
-    font-size: 16px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: ${({ theme }) => theme.text_primary};
-    border-radius: 12px;
-    padding: 12px 16px 12px 48px;
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    padding: 16px 16px 16px 56px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
     
     &:focus {
-        border: 1px solid ${({ theme }) => theme.primary};
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.primary + 20};
+        border: 2px solid ${({ theme }) => theme.primary};
+        box-shadow: 0 0 0 4px ${({ theme }) => theme.primary}20;
+        background: ${({ theme }) => theme.card};
+        
+        & + ${InputIcon} {
+            color: ${({ theme }) => theme.accent};
+            transform: translateY(-50%) scale(1.1);
+        }
     }
     
     &::placeholder {
         color: ${({ theme }) => theme.text_secondary};
+        font-weight: 400;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 14px 14px 14px 48px;
     }
 `;
 
 const ContactInputMessage = styled.textarea`
     width: 100%;
-    background-color: transparent;
-    border: 1px solid ${({ theme }) => theme.text_secondary};
+    background: ${({ theme }) => theme.card_light};
+    border: 2px solid ${({ theme }) => theme.glassHover};
     outline: none;
-    font-size: 16px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: ${({ theme }) => theme.text_primary};
-    border-radius: 12px;
-    padding: 12px 16px 12px 48px;
+    border-radius: 16px;
+    padding: 16px 16px 16px 56px;
     resize: vertical;
-    min-height: 120px;
-    transition: all 0.3s ease;
+    min-height: 140px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
     
     &:focus {
-        border: 1px solid ${({ theme }) => theme.primary};
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.primary + 20};
+        border: 2px solid ${({ theme }) => theme.primary};
+        box-shadow: 0 0 0 4px ${({ theme }) => theme.primary}20;
+        background: ${({ theme }) => theme.card};
+        
+        & + ${InputIcon} {
+            color: ${({ theme }) => theme.accent};
+            transform: translateY(-50%) scale(1.1);
+        }
     }
     
     &::placeholder {
         color: ${({ theme }) => theme.text_secondary};
+        font-weight: 400;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 14px 14px 14px 48px;
+        min-height: 120px;
     }
 `;
 
@@ -206,22 +284,23 @@ const ContactButton = styled.button`
     width: 100%;
     text-decoration: none;
     text-align: center;
-    background: linear-gradient(225deg, ${({ theme }) => theme.primary} 0%, ${({ theme }) => theme.primary + 99} 100%);
-    padding: 13px 16px;
-    margin-top: 2px;
-    border-radius: 12px;
+    background: ${({ theme }) => theme.primaryGradient};
+    padding: 16px 24px;
+    margin-top: 8px;
+    border-radius: 16px;
     border: none;
-    color: ${({ theme }) => theme.text_primary};
-    font-size: 18px;
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     position: relative;
     overflow: hidden;
+    box-shadow: ${({ theme }) => theme.shadow};
     
     &::before {
         content: '';
@@ -230,16 +309,21 @@ const ContactButton = styled.button`
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.5s;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: 0.6s;
     }
     
     &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px ${({ theme }) => theme.primary + 40};
+        transform: translateY(-3px);
+        box-shadow: ${({ theme }) => theme.shadowHover};
+        animation: ${glow} 2s ease-in-out infinite;
         
         &::before {
             left: 100%;
+        }
+        
+        svg {
+            transform: translateX(4px);
         }
     }
     
@@ -247,6 +331,16 @@ const ContactButton = styled.button`
         opacity: 0.7;
         cursor: not-allowed;
         transform: none;
+        animation: none;
+    }
+    
+    svg {
+        transition: transform 0.3s ease;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 14px 20px;
+        gap: 8px;
     }
 `;
 
@@ -281,57 +375,57 @@ const Contact = () => {
     return (
         <Container id="contact">
             <Wrapper>
-                <Title>Contact</Title>
-                <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
+                <Title>Get In Touch</Title>
+                <Desc>Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life. I'm always excited to hear about new opportunities and challenges!</Desc>
                 <ContactForm ref={form} onSubmit={handleSubmit}>
                     <ContactTitle>
-                        <Email /> Email Me 🚀
+                        <Email /> Send Me a Message 🚀
                     </ContactTitle>
                     <InputWrapper>
-                        <InputIcon>
-                            <Email />
-                        </InputIcon>
                         <ContactInput 
-                            placeholder="Your Email" 
+                            placeholder="Your Email Address" 
                             name="from_email" 
                             type="email"
                             required 
                         />
+                        <InputIcon>
+                            <Email />
+                        </InputIcon>
                     </InputWrapper>
                     <InputWrapper>
-                        <InputIcon>
-                            <Person />
-                        </InputIcon>
                         <ContactInput 
-                            placeholder="Your Name" 
+                            placeholder="Your Full Name" 
                             name="from_name" 
                             required 
                         />
+                        <InputIcon>
+                            <Person />
+                        </InputIcon>
                     </InputWrapper>
                     <InputWrapper>
-                        <InputIcon>
-                            <Subject />
-                        </InputIcon>
                         <ContactInput 
-                            placeholder="Subject" 
+                            placeholder="Subject / Project Type" 
                             name="subject" 
                             required 
                         />
+                        <InputIcon>
+                            <Subject />
+                        </InputIcon>
                     </InputWrapper>
                     <InputWrapper>
-                        <InputIcon>
-                            <Message />
-                        </InputIcon>
                         <ContactInputMessage 
-                            placeholder="Message" 
-                            rows="4" 
+                            placeholder="Tell me about your project, requirements, or just say hello! I'd love to hear from you." 
+                            rows="5" 
                             name="message" 
                             required 
                         />
+                        <InputIcon>
+                            <Message />
+                        </InputIcon>
                     </InputWrapper>
                     <ContactButton type="submit" disabled={loading}>
                         <Send />
-                        {loading ? 'Sending...' : 'Send Message'}
+                        {loading ? 'Sending Message...' : 'Send Message'}
                     </ContactButton>
                 </ContactForm>
                 <Snackbar
@@ -344,8 +438,13 @@ const Contact = () => {
                         onClose={() => setOpen(false)} 
                         severity="success" 
                         variant="filled"
+                        sx={{
+                            background: 'linear-gradient(135deg, #10b981, #059669)',
+                            borderRadius: '12px',
+                            fontWeight: 600
+                        }}
                     >
-                        Email sent successfully!
+                        🎉 Message sent successfully! I'll get back to you soon.
                     </Alert>
                 </Snackbar>
                 {error && (
@@ -359,8 +458,13 @@ const Contact = () => {
                             onClose={() => setError('')} 
                             severity="error" 
                             variant="filled"
+                            sx={{
+                                background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+                                borderRadius: '12px',
+                                fontWeight: 600
+                            }}
                         >
-                            {error}
+                            ❌ {error}
                         </Alert>
                     </Snackbar>
                 )}

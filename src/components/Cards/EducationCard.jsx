@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const fadeIn = keyframes`
+const fadeInUp = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
@@ -12,170 +12,251 @@ const fadeIn = keyframes`
   }
 `;
 
-const Document = styled.img`
-    display: none;
-    height: 70px;
-    width: fit-content;
-    background-color: #000;
-    border-radius: 10px;
-    &:hover{
-        cursor: pointer;
-        opacity: 0.8;
-    }
-`
+const float = keyframes`
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+`;
 
-const Description = styled.div`
-    width: 100%;
-    font-size: 15px;
-    font-weight: 400;
-    text-align: justify;
-    color: ${({ theme }) => theme.text_secondary + 99};
-    margin-bottom: 10px;
-    line-height: 1.5;
-    @media only screen and (max-width: 768px){
-        font-size: 12px;
-    }
-`
-
-const Span = styled.span`
-overflow: hidden;
-display: -webkit-box;
-max-width: 100%;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
-`
+const glow = keyframes`
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); 
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); 
+  }
+`;
 
 const Card = styled.div`
-    width: 650px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    padding: 12px 16px;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 20px;
+    box-shadow: ${({ theme }) => theme.shadow};
+    padding: 24px;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    transition: all 0.3s ease-in-out;
-    border: 0.1px solid ${({ theme }) => theme.primary};
+    gap: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid ${({ theme }) => theme.glassHover};
     background: ${({ theme }) => theme.card};
+    animation: ${fadeInUp} 0.6s ease-out ${({ index }) => index * 0.1}s both;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: ${({ theme }) => theme.primaryGradient};
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+        border-radius: 20px;
+    }
     
     &:hover {
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        transform: translateY(-5px);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: ${({ theme }) => theme.shadowHover};
+        border-color: ${({ theme }) => theme.primary}40;
+        animation: ${glow} 2s ease-in-out infinite;
+        
+        &::before {
+            opacity: 0.05;
+        }
     }
     
     @media (max-width: 768px) {
-        width: 300px;
+        max-width: 350px;
+        padding: 20px;
+        gap: 12px;
     }
-
-    &:hover ${Document}{
-        display: flex;
+    
+    @media (max-width: 480px) {
+        max-width: 320px;
+        padding: 16px;
     }
-
-    &:hover ${Span}{
-        overflow: visible;
-        -webkit-line-clamp: unset;
-
-    }
-`
+`;
 
 const Top = styled.div`
     display: flex;
-    gap: 12px;
-`
+    gap: 16px;
+    align-items: flex-start;
+`;
 
 const Image = styled.img`
-    height: 50px;
-    background-color: #000;
-    border-radius: 10px;
-    margin-top: 4px;
-    transition: all 0.3s ease-in-out;
+    height: 60px;
+    width: 60px;
+    background-color: ${({ theme }) => theme.card_light};
+    border-radius: 16px;
+    object-fit: cover;
+    border: 2px solid ${({ theme }) => theme.primary}30;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: ${float} 6s ease-in-out infinite;
     
-    &:hover {
-        transform: scale(1.1);
+    ${Card}:hover & {
+        transform: scale(1.1) rotate(5deg);
+        border-color: ${({ theme }) => theme.primary};
+        box-shadow: ${({ theme }) => theme.shadow};
     }
     
     @media (max-width: 768px) {
-        height: 40px;
+        height: 50px;
+        width: 50px;
+        border-radius: 12px;
     }
-`
+    
+    @media (max-width: 480px) {
+        height: 45px;
+        width: 45px;
+    }
+`;
 
 const Body = styled.div`
     display: flex;
     flex-direction: column; 
     width: 100%;
-`
+    gap: 6px;
+`;
 
 const Name = styled.div`
-    font-size: 18px;
-    font-weight: 600;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 700;
     color: ${({ theme }) => theme.text_primary};
-    margin-bottom: 4px;
-    background: linear-gradient(120deg, ${({ theme }) => theme.text_primary}, ${({ theme }) => theme.primary});
+    background: ${({ theme }) => theme.primaryGradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.01em;
     
     @media (max-width: 768px) {
-        font-size: 16px;
+        font-size: clamp(1rem, 3vw, 1.1rem);
     }
-`
+`;
 
 const Degree = styled.div`
-    font-size: 14px;
-    font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 600;
     color: ${({ theme }) => theme.text_secondary};
-    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    &::before {
+        content: '🎓';
+        font-size: 1rem;
+    }
     
     @media (max-width: 768px) {
-        font-size: 12px;
+        font-size: clamp(0.85rem, 3vw, 0.9rem);
     }
-`
+`;
 
 const Date = styled.div`
-    font-size: 12px;
-    font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 80};
-    margin-bottom: 8px;
-    
-    @media (max-width: 768px) {
-        font-size: 10px;
-    }
-`
-
-const Grade = styled.div`
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     font-weight: 500;
     color: ${({ theme }) => theme.text_secondary};
-    padding: 4px 12px;
-    background: ${({ theme }) => theme.primary + 15};
-    border-radius: 12px;
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     
-    &:hover {
-        background: ${({ theme }) => theme.primary + 30};
-        transform: translateY(-2px);
+    &::before {
+        content: '📅';
+        font-size: 0.9rem;
     }
     
     @media (max-width: 768px) {
-        font-size: 12px;
+        font-size: clamp(0.75rem, 3vw, 0.8rem);
     }
-`
+`;
 
-const EducationCard = ({ education }) => {
+const Grade = styled.div`
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    font-weight: 600;
+    color: ${({ theme }) => theme.primary};
+    padding: 8px 16px;
+    background: ${({ theme }) => theme.primary}15;
+    border: 1px solid ${({ theme }) => theme.primary}30;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &::before {
+        content: '🏆';
+        font-size: 1rem;
+    }
+    
+    &:hover {
+        background: ${({ theme }) => theme.primary}25;
+        transform: translateY(-2px);
+        box-shadow: ${({ theme }) => theme.shadow};
+    }
+    
+    @media (max-width: 768px) {
+        font-size: clamp(0.8rem, 3vw, 0.85rem);
+        padding: 6px 12px;
+    }
+`;
+
+const Description = styled.div`
+    width: 100%;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 400;
+    text-align: justify;
+    color: ${({ theme }) => theme.text_secondary};
+    line-height: 1.7;
+    padding: 16px;
+    background: ${({ theme }) => theme.card_light};
+    border-radius: 12px;
+    border: 1px solid ${({ theme }) => theme.glassHover};
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: ${({ theme }) => theme.primaryGradient};
+        opacity: 0.02;
+        border-radius: 12px;
+        pointer-events: none;
+    }
+    
+    @media (max-width: 768px) {
+        font-size: clamp(0.85rem, 3vw, 0.9rem);
+        padding: 12px;
+        line-height: 1.6;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 10px;
+    }
+`;
+
+const EducationCard = ({ education, index = 0 }) => {
     return (
-        <Card>
+        <Card index={index}>
             <Top>
-                <Image src={education.img} />
+                <Image src={education.img} alt={education.school} />
                 <Body>
                     <Name>{education.school}</Name>
                     <Degree>{education.degree}</Degree>
                     <Date>{education.date}</Date>
                 </Body>
             </Top>
-            <Grade><b>Grade: </b>{education.grade}</Grade>
+            <Grade>
+                <span>Grade:</span> {education.grade}
+            </Grade>
             <Description>
                 {education.desc}
             </Description>
