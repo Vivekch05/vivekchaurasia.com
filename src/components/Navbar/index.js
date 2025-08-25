@@ -13,10 +13,14 @@ import {
   MobileNavLogo,
   MobileLink,
   DrawerOverlay,
-  DrawerCloseIcon
+  DrawerCloseIcon,
+  MobileSocialLinks,
+  SocialIcon,
+  MobileDivider,
+  MobileSectionTitle
 } from './NavbarStyledComponent';
 import { DiCssdeck } from 'react-icons/di';
-import { FaBars, FaTimes, FaGithub } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaUser, FaCode, FaBriefcase, FaFolder, FaGraduationCap, FaEnvelope } from 'react-icons/fa';
 import { Bio } from '../../data/constants';
 import { useTheme } from 'styled-components';
 
@@ -63,12 +67,20 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'education', label: 'Education' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'about', label: 'About', icon: FaUser },
+    { id: 'skills', label: 'Skills', icon: FaCode },
+    { id: 'experience', label: 'Experience', icon: FaBriefcase },
+    { id: 'projects', label: 'Projects', icon: FaFolder },
+    { id: 'education', label: 'Education', icon: FaGraduationCap },
+    { id: 'contact', label: 'Contact', icon: FaEnvelope },
+  ];
+
+  const socialLinks = [
+    { icon: FaGithub, url: Bio.github, label: 'GitHub' },
+    { icon: FaLinkedin, url: Bio.linkedin, label: 'LinkedIn' },
+    { icon: FaTwitter, url: Bio.twitter, label: 'Twitter' },
+    { icon: FaInstagram, url: Bio.insta, label: 'Instagram' },
+    { icon: FaFacebook, url: Bio.facebook, label: 'Facebook' },
   ];
 
   return (
@@ -118,46 +130,74 @@ const Navbar = () => {
           </GitHubButton>
         </ButtonContainer>
 
-        {/* Modern Drawer for Mobile */}
+        {/* Enhanced Mobile Drawer */}
         {isOpen && (
           <>
             <DrawerOverlay onClick={() => setIsOpen(false)} />
             <MobileMenu isOpen={isOpen}>
               <DrawerCloseIcon>
-                <FaTimes size={28} onClick={() => setIsOpen(false)} />
+                <FaTimes size={24} onClick={() => setIsOpen(false)} />
               </DrawerCloseIcon>
+              
               <MobileNavLogo>
                 <DiCssdeck size="2.2rem" />
                 <Span>Portfolio</Span>
               </MobileNavLogo>
-              {navLinks.map((link) => (
+              
+              <MobileSectionTitle>Navigation</MobileSectionTitle>
+              
+              {navLinks.map((link, index) => (
                 <MobileLink
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={(e) => handleNavLinkClick(e, link.id)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
+                  <link.icon size={18} />
                   {link.label}
                 </MobileLink>
               ))}
+              
+              <MobileDivider />
+              
               <GitHubButton
                 style={{
-                  padding: '12px 20px',
-                  background: `${theme.primary}`,
+                  padding: '16px 24px',
+                  background: `${theme.primaryGradient}`,
                   color: 'white',
                   width: '100%',
-                  borderRadius: '12px',
-                  marginTop: '2rem',
+                  borderRadius: '16px',
+                  marginTop: '1rem',
                   fontWeight: 600,
-                  fontSize: '1.1rem'
+                  fontSize: '1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '12px'
                 }}
                 href={Bio.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit GitHub Profile"
               >
-                <FaGithub size={20} style={{ marginRight: 8 }} />
+                <FaGithub size={20} />
                 GitHub Profile
               </GitHubButton>
+              
+              <MobileSocialLinks>
+                {socialLinks.map((social, index) => (
+                  <SocialIcon
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${social.label}`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <social.icon size={20} />
+                  </SocialIcon>
+                ))}
+              </MobileSocialLinks>
             </MobileMenu>
           </>
         )}

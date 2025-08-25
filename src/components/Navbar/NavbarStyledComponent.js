@@ -21,12 +21,30 @@ const slideIn = keyframes`
   }
 `;
 
+const slideInRight = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
 const pulse = keyframes`
   0%, 100% {
     transform: scale(1);
   }
   50% {
     transform: scale(1.05);
+  }
+`;
+
+const float = keyframes`
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
   }
 `;
 
@@ -261,11 +279,12 @@ export const MobileIcon = styled.div`
 export const DrawerOverlay = styled.div`
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 1001;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: ${fadeIn} 0.3s ease-out;
 `;
 
 export const MobileMenu = styled.div`
@@ -273,48 +292,74 @@ export const MobileMenu = styled.div`
   top: 0; right: 0;
   height: 100vh;
   width: 85vw;
-  max-width: 340px;
-  background: ${({ theme }) => theme.glass};
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  max-width: 360px;
+  background: ${({ theme }) => theme.card};
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   box-shadow: ${({ theme }) => theme.shadowHover};
   z-index: 1002;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 2rem 2rem 2rem;
+  padding: 2rem 1.5rem 2rem 1.5rem;
   transform: ${({ isOpen }) => isOpen ? 'translateX(0)' : 'translateX(100%)'};
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  animation: fadeIn 0.3s;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: ${slideInRight} 0.4s ease-out;
   border-left: 1px solid ${({ theme }) => theme.glassHover};
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.primary}40;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.primary}60;
+  }
 `;
 
 export const DrawerCloseIcon = styled.div`
   align-self: flex-end;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   color: ${({ theme }) => theme.primary};
   transition: all 0.3s ease;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.glassHover};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
     color: ${({ theme }) => theme.secondary};
-    background: ${({ theme }) => theme.glassHover};
-    transform: scale(1.1);
+    background: ${({ theme }) => theme.primary}20;
+    transform: scale(1.1) rotate(90deg);
   }
 `;
 
 export const MobileNavLogo = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  font-size: 1.3rem;
+  gap: 0.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
   background: ${({ theme }) => theme.primaryGradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.glassHover};
+  animation: ${float} 6s ease-in-out infinite;
 `;
 
 export const MobileMenuItems = styled.ul`
@@ -411,11 +456,17 @@ export const MobileLink = styled.a`
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    padding: 12px 16px;
+    padding: 16px 20px;
     position: relative;
-    border-radius: 12px;
+    border-radius: 16px;
     width: 100%;
-    text-align: center;
+    text-align: left;
+    margin-bottom: 8px;
+    background: ${({ theme }) => theme.glassHover};
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     
     &::before {
         content: '';
@@ -425,7 +476,7 @@ export const MobileLink = styled.a`
         right: 0;
         bottom: 0;
         background: ${({ theme }) => theme.primaryGradient};
-        border-radius: 12px;
+        border-radius: 16px;
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: -1;
@@ -435,32 +486,82 @@ export const MobileLink = styled.a`
         content: '';
         position: absolute;
         bottom: 0;
-        left: 50%;
+        left: 0;
         width: 0;
-        height: 2px;
+        height: 3px;
         background: ${({ theme }) => theme.primaryGradient};
         transition: all 0.3s ease;
-        transform: translateX(-50%);
+        border-radius: 0 0 16px 16px;
     }
     
     &:hover {
         color: ${({ theme }) => theme.white};
-        transform: translateY(-2px);
+        transform: translateX(8px);
+        border-color: ${({ theme }) => theme.primary}40;
         
         &::before {
             opacity: 1;
         }
         
         &::after {
-            width: 80%;
+            width: 100%;
         }
     }
 
     &.active {
         color: ${({ theme }) => theme.primary};
+        background: ${({ theme }) => theme.primary}10;
+        border-color: ${({ theme }) => theme.primary}30;
         
         &::after {
-            width: 80%;
+            width: 100%;
         }
     }
+`;
+
+export const MobileSocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid ${({ theme }) => theme.glassHover};
+`;
+
+export const SocialIcon = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.glassHover};
+  color: ${({ theme }) => theme.text_primary};
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: 1px solid transparent;
+  
+  &:hover {
+    background: ${({ theme }) => theme.primaryGradient};
+    color: ${({ theme }) => theme.white};
+    transform: translateY(-4px) scale(1.1);
+    border-color: ${({ theme }) => theme.primary};
+  }
+`;
+
+export const MobileDivider = styled.div`
+  height: 1px;
+  background: ${({ theme }) => theme.glassHover};
+  margin: 1.5rem 0;
+  border-radius: 1px;
+`;
+
+export const MobileSectionTitle = styled.div`
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text_secondary};
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1.5rem 0 1rem 0;
+  padding: 0 4px;
 `;
